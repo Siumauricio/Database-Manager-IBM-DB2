@@ -26,11 +26,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
             this.arbol_conexiones = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Tablas = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel_conexiones = new System.Windows.Forms.Panel();
             this.refresh = new System.Windows.Forms.Button();
             this.n_conexion = new System.Windows.Forms.Button();
@@ -39,10 +39,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Basededatos = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarConexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Tablas.SuspendLayout();
             this.panel_conexiones.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.Basededatos.SuspendLayout();
             this.SuspendLayout();
             // 
             // arbol_conexiones
@@ -55,6 +59,14 @@
             this.arbol_conexiones.SelectedImageIndex = 0;
             this.arbol_conexiones.Size = new System.Drawing.Size(218, 495);
             this.arbol_conexiones.TabIndex = 0;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "iconfinder_database_299089.png");
+            this.imageList1.Images.SetKeyName(1, "iconfinder_icon-folder_211608.png");
+            this.imageList1.Images.SetKeyName(2, "iconfinder_098_Spreadsheet_183529.png");
             // 
             // Tablas
             // 
@@ -83,14 +95,6 @@
             this.eliminarTablaToolStripMenuItem.Name = "eliminarTablaToolStripMenuItem";
             this.eliminarTablaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.eliminarTablaToolStripMenuItem.Text = "Eliminar Tabla";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "iconfinder_database_299089.png");
-            this.imageList1.Images.SetKeyName(1, "iconfinder_icon-folder_211608.png");
-            this.imageList1.Images.SetKeyName(2, "iconfinder_098_Spreadsheet_183529.png");
             // 
             // panel_conexiones
             // 
@@ -165,6 +169,26 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // Basededatos
+            // 
+            this.Basededatos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarConexionToolStripMenuItem,
+            this.propiedadesToolStripMenuItem});
+            this.Basededatos.Name = "contextMenuStrip2";
+            this.Basededatos.Size = new System.Drawing.Size(181, 70);
+            // 
+            // eliminarConexionToolStripMenuItem
+            // 
+            this.eliminarConexionToolStripMenuItem.Name = "eliminarConexionToolStripMenuItem";
+            this.eliminarConexionToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.eliminarConexionToolStripMenuItem.Text = "Eliminar Conexion";
+            // 
+            // propiedadesToolStripMenuItem
+            // 
+            this.propiedadesToolStripMenuItem.Name = "propiedadesToolStripMenuItem";
+            this.propiedadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.propiedadesToolStripMenuItem.Text = "Propiedades";
+            // 
             // PantallaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,6 +206,7 @@
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.Basededatos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,6 +226,9 @@
         private System.Windows.Forms.ToolStripMenuItem añadirTablaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarTablaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarTablaToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip Basededatos;
+        private System.Windows.Forms.ToolStripMenuItem eliminarConexionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propiedadesToolStripMenuItem;
     }
 }
 

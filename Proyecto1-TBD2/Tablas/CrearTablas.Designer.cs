@@ -27,25 +27,27 @@
             System.Windows.Forms.ComboBox comboBox1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrearTablas));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nombre_tabla = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Tabla = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.contenido = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.PK = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo_dato = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tamano = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nullo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.caja = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             comboBox1 = new System.Windows.Forms.ComboBox();
             this.Tabla.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contenido)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -68,13 +70,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Esquema:";
             // 
-            // textBox1
+            // nombre_tabla
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(162, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(302, 21);
-            this.textBox1.TabIndex = 2;
+            this.nombre_tabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombre_tabla.Location = new System.Drawing.Point(162, 81);
+            this.nombre_tabla.Name = "nombre_tabla";
+            this.nombre_tabla.Size = new System.Drawing.Size(302, 21);
+            this.nombre_tabla.TabIndex = 2;
             // 
             // label2
             // 
@@ -94,6 +96,7 @@
             this.Tabla.SelectedIndex = 0;
             this.Tabla.Size = new System.Drawing.Size(609, 337);
             this.Tabla.TabIndex = 4;
+            this.Tabla.SelectedIndexChanged += new System.EventHandler(this.Tabla_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -105,16 +108,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tablas";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(601, 311);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "DDL";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // contenido
             // 
@@ -131,19 +124,6 @@
             this.contenido.Name = "contenido";
             this.contenido.Size = new System.Drawing.Size(595, 305);
             this.contenido.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.ImageIndex = 0;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(666, 182);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 23);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PK
             // 
@@ -177,14 +157,38 @@
             this.Nullo.Name = "Nullo";
             this.Nullo.Width = 150;
             // 
-            // button2
+            // tabPage2
             // 
-            this.button2.Location = new System.Drawing.Point(617, 509);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Aceptar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.tabPage2.Controls.Add(this.caja);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(601, 311);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "DDL";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // caja
+            // 
+            this.caja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.caja.Location = new System.Drawing.Point(3, 3);
+            this.caja.Name = "caja";
+            this.caja.Size = new System.Drawing.Size(595, 305);
+            this.caja.TabIndex = 0;
+            this.caja.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.ImageIndex = 0;
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(666, 182);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 23);
+            this.button1.TabIndex = 1;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // imageList1
             // 
@@ -192,6 +196,16 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "iconfinder_sign-add_299068.png");
             this.imageList1.Images.SetKeyName(1, "iconfinder_f-cross_256_282471.png");
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(548, 507);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Crear Tabla";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -216,7 +230,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Tabla);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nombre_tabla);
             this.Controls.Add(this.label1);
             this.Controls.Add(comboBox1);
             this.Name = "CrearTablas";
@@ -225,6 +239,7 @@
             this.Tabla.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contenido)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +248,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nombre_tabla;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl Tabla;
         private System.Windows.Forms.TabPage tabPage1;
@@ -248,5 +263,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox caja;
     }
 }

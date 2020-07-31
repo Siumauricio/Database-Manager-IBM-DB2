@@ -31,6 +31,7 @@ namespace Proyecto1_TBD2 {
         private void n_conexion_Click(object sender, EventArgs e) {
             List<ContextMenuStrip> menus = new List<ContextMenuStrip>();
             menus.Add(Tablas);
+            menus.Add(Basededatos);
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
         }
@@ -39,8 +40,12 @@ namespace Proyecto1_TBD2 {
         }
 
         private void añadirTablaToolStripMenuItem_Click(object sender, EventArgs e) {
-            CrearTablas ct = new CrearTablas();
+            CrearTablas ct = new CrearTablas(arbol_conexiones);
             ct.Show();
+        }
+
+        private void administrarConexionToolStripMenuItem_Click(object sender, EventArgs e) {
+
         }
     }
 }

@@ -54,7 +54,7 @@
             this.name_db.Name = "name_db";
             this.name_db.Size = new System.Drawing.Size(100, 20);
             this.name_db.TabIndex = 1;
-            this.name_db.Text = "SAMPLE";
+            this.name_db.Text = "BOOKS";
             // 
             // contrasena
             // 

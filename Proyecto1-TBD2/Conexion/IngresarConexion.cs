@@ -47,6 +47,7 @@ namespace Proyecto1_TBD2.Conexion {
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
+            connect.Close();
         }
 
         private void button3_Click(object sender, EventArgs e) {
@@ -70,21 +71,21 @@ namespace Proyecto1_TBD2.Conexion {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
            
-            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = 'MAURICIO'", connect);
+            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = 'DB2ADMIN'", connect);
             DB2DataReader bff = cmd.ExecuteReader();
             while (bff.Read()) {
                 var Names = bff ["NAME"].ToString();
                 TreeNode nodo = node1.Nodes.Add(Names.ToString());
                 nodo.ImageIndex = 2;
                 nodo.SelectedImageIndex = 2;
-            
             }
             this.Hide();
+            connect.Close();
         }
-
 
         public void DibujarConexion(string db) {
             TreeNode node0 = arbol.Nodes.Add(db);
+            node0.ContextMenuStrip = subMenus [1];
 
             node1 = node0.Nodes.Add("Tablas");
             node1.ImageIndex = 1;
@@ -105,7 +106,6 @@ namespace Proyecto1_TBD2.Conexion {
             node6 = node0.Nodes.Add("Triggers");
             node6.ImageIndex = 1;
             node6.SelectedImageIndex = 1;
-
         }
     }
 }
