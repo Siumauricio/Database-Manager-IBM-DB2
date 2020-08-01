@@ -36,6 +36,7 @@
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo_dato = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tamano = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.escala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nullo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.caja = new System.Windows.Forms.RichTextBox();
@@ -111,19 +112,21 @@
             // 
             // contenido
             // 
-            this.contenido.AllowUserToAddRows = false;
+            this.contenido.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.contenido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contenido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PK,
             this.nombre,
             this.tipo_dato,
             this.tamano,
+            this.escala,
             this.Nullo});
             this.contenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenido.Location = new System.Drawing.Point(3, 3);
             this.contenido.Name = "contenido";
             this.contenido.Size = new System.Drawing.Size(595, 305);
             this.contenido.TabIndex = 0;
+            this.contenido.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.contenido_DefaultValuesNeeded);
             // 
             // PK
             // 
@@ -139,11 +142,11 @@
             // 
             this.tipo_dato.HeaderText = "Tipo de dato";
             this.tipo_dato.Items.AddRange(new object[] {
+            "BOOLEAN",
             "VARCHAR",
             "INT",
-            "DATE",
-            "DOUBLE",
-            "FLOAT"});
+            "DECIMAL",
+            "DOUBLE"});
             this.tipo_dato.Name = "tipo_dato";
             // 
             // tamano
@@ -151,11 +154,15 @@
             this.tamano.HeaderText = "Tamaño";
             this.tamano.Name = "tamano";
             // 
+            // escala
+            // 
+            this.escala.HeaderText = "Escala";
+            this.escala.Name = "escala";
+            // 
             // Nullo
             // 
             this.Nullo.HeaderText = "Nullo";
             this.Nullo.Name = "Nullo";
-            this.Nullo.Width = 150;
             // 
             // tabPage2
             // 
@@ -255,14 +262,15 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView contenido;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn PK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewComboBoxColumn tipo_dato;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tamano;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Nullo;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox caja;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn PK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewComboBoxColumn tipo_dato;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tamano;
+        private System.Windows.Forms.DataGridViewTextBoxColumn escala;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Nullo;
     }
 }

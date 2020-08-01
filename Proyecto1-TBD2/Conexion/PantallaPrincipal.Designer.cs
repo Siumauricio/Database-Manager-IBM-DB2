@@ -29,24 +29,24 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Tablas = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_conexiones = new System.Windows.Forms.Panel();
             this.refresh = new System.Windows.Forms.Button();
             this.n_conexion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Basededatos = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarConexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subMenustablas = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Tablas.SuspendLayout();
             this.panel_conexiones.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.Basededatos.SuspendLayout();
+            this.subMenustablas.SuspendLayout();
             this.SuspendLayout();
             // 
             // arbol_conexiones
@@ -71,30 +71,16 @@
             // Tablas
             // 
             this.Tablas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.añadirTablaToolStripMenuItem,
-            this.editarTablaToolStripMenuItem,
-            this.eliminarTablaToolStripMenuItem});
+            this.añadirTablaToolStripMenuItem});
             this.Tablas.Name = "menu1";
-            this.Tablas.Size = new System.Drawing.Size(148, 70);
+            this.Tablas.Size = new System.Drawing.Size(140, 26);
             // 
             // añadirTablaToolStripMenuItem
             // 
             this.añadirTablaToolStripMenuItem.Name = "añadirTablaToolStripMenuItem";
-            this.añadirTablaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.añadirTablaToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.añadirTablaToolStripMenuItem.Text = "Añadir Tabla";
             this.añadirTablaToolStripMenuItem.Click += new System.EventHandler(this.añadirTablaToolStripMenuItem_Click);
-            // 
-            // editarTablaToolStripMenuItem
-            // 
-            this.editarTablaToolStripMenuItem.Name = "editarTablaToolStripMenuItem";
-            this.editarTablaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.editarTablaToolStripMenuItem.Text = "Editar Tabla";
-            // 
-            // eliminarTablaToolStripMenuItem
-            // 
-            this.eliminarTablaToolStripMenuItem.Name = "eliminarTablaToolStripMenuItem";
-            this.eliminarTablaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.eliminarTablaToolStripMenuItem.Text = "Eliminar Tabla";
             // 
             // panel_conexiones
             // 
@@ -141,33 +127,12 @@
             // 
             this.panel1.Controls.Add(this.arbol_conexiones);
             this.panel1.Controls.Add(this.panel_conexiones);
-            this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1127, 695);
             this.panel1.TabIndex = 4;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1127, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Basededatos
             // 
@@ -175,19 +140,58 @@
             this.eliminarConexionToolStripMenuItem,
             this.propiedadesToolStripMenuItem});
             this.Basededatos.Name = "contextMenuStrip2";
-            this.Basededatos.Size = new System.Drawing.Size(181, 70);
+            this.Basededatos.Size = new System.Drawing.Size(172, 48);
             // 
             // eliminarConexionToolStripMenuItem
             // 
             this.eliminarConexionToolStripMenuItem.Name = "eliminarConexionToolStripMenuItem";
-            this.eliminarConexionToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.eliminarConexionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarConexionToolStripMenuItem.Text = "Eliminar Conexion";
+            this.eliminarConexionToolStripMenuItem.Click += new System.EventHandler(this.eliminarConexionToolStripMenuItem_Click);
             // 
             // propiedadesToolStripMenuItem
             // 
             this.propiedadesToolStripMenuItem.Name = "propiedadesToolStripMenuItem";
-            this.propiedadesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.propiedadesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.propiedadesToolStripMenuItem.Text = "Propiedades";
+            // 
+            // subMenustablas
+            // 
+            this.subMenustablas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verDatosToolStripMenuItem,
+            this.verTablaToolStripMenuItem,
+            this.eliminarTablaToolStripMenuItem,
+            this.modificarTablaToolStripMenuItem});
+            this.subMenustablas.Name = "subMenustablas";
+            this.subMenustablas.Size = new System.Drawing.Size(156, 92);
+            // 
+            // eliminarTablaToolStripMenuItem
+            // 
+            this.eliminarTablaToolStripMenuItem.Name = "eliminarTablaToolStripMenuItem";
+            this.eliminarTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarTablaToolStripMenuItem.Text = "Eliminar Tabla";
+            this.eliminarTablaToolStripMenuItem.Click += new System.EventHandler(this.eliminarTablaToolStripMenuItem_Click_1);
+            // 
+            // modificarTablaToolStripMenuItem
+            // 
+            this.modificarTablaToolStripMenuItem.Name = "modificarTablaToolStripMenuItem";
+            this.modificarTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarTablaToolStripMenuItem.Text = "Modificar Tabla";
+            this.modificarTablaToolStripMenuItem.Click += new System.EventHandler(this.modificarTablaToolStripMenuItem_Click);
+            // 
+            // verTablaToolStripMenuItem
+            // 
+            this.verTablaToolStripMenuItem.Name = "verTablaToolStripMenuItem";
+            this.verTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verTablaToolStripMenuItem.Text = "Ver Tabla";
+            this.verTablaToolStripMenuItem.Click += new System.EventHandler(this.verTablaToolStripMenuItem_Click);
+            // 
+            // verDatosToolStripMenuItem
+            // 
+            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
+            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verDatosToolStripMenuItem.Text = "Ver Datos";
+            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
             // 
             // PantallaPrincipal
             // 
@@ -195,7 +199,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 695);
             this.Controls.Add(this.panel1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "PantallaPrincipal";
             this.Text = "IBM DB2";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -203,10 +206,8 @@
             this.panel_conexiones.ResumeLayout(false);
             this.panel_conexiones.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.Basededatos.ResumeLayout(false);
+            this.subMenustablas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -218,17 +219,17 @@
         private System.Windows.Forms.Button n_conexion;
         private System.Windows.Forms.ContextMenuStrip Tablas;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem añadirTablaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarTablaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliminarTablaToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip Basededatos;
         private System.Windows.Forms.ToolStripMenuItem eliminarConexionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem propiedadesToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip subMenustablas;
+        private System.Windows.Forms.ToolStripMenuItem verTablaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminarTablaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarTablaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verDatosToolStripMenuItem;
     }
 }
 

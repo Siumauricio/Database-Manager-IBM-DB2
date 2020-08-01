@@ -16,7 +16,7 @@ namespace Proyecto1_TBD2.Tablas {
         public CrearTablas(TreeView _arbol) {
             InitializeComponent();
             arbol = _arbol;
-            contenido.Rows.Add();
+
         }
 
         private void CrearTablas_Load(object sender, EventArgs e) {
@@ -57,92 +57,57 @@ namespace Proyecto1_TBD2.Tablas {
             } catch (DB2Exception e) {
                 MessageBox.Show("Ha ocurrido un error al crear su tabla!\n" +e.Message);
             }
+            connect.Close();
         }
         public string obtenerQuery() {
             string script = "";
+            int cantidad = 0;
             foreach (DataGridViewRow row in contenido.Rows) {
-                string pk = "", nombre = "", tipo_dato = "", tamano = "", nullo = "";
-                for (int i = 0; i < contenido.Columns.Count; i++) {
-                    string cellText = "";
-                    bool primary = false;
-                    bool valor = false;
-                    bool isNull = false;
-                    String header = contenido.Columns [i].HeaderText;
-                    if (i == 0) {
-                        DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)row.Cells ["PK"];
-
-                        if (Convert.ToBoolean(cell.Value)) {
-                            primary = true;
-                        } else {
-                            primary = false;
-                        }
+                string pk = "", checkPK = "", nombre = "", tipo_dato = "", tamano = "", escala = "", nullo = "NOT NULL", checkNull = "";
+                if (cantidad < (contenido.Rows.Count -1)) {
+                    checkPK += row.Cells [0].Value;
+                    if (checkPK == "True") {
+                        pk = "PRIMARY KEY";
                     }
-                    if (i == 4) {
-                        DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)row.Cells ["Nullo"];
+                    nombre += row.Cells [1].Value;
+                    tipo_dato += row.Cells [2].Value;
+                    tamano += row.Cells [3].Value;
+                    escala += row.Cells [4].Value;
+                    checkNull += row.Cells [5].Value;
 
-                        if (Convert.ToBoolean(cell.Value)) {
-                            valor = true;
-                        } else {
-                            valor = false;
-                        }
-
-                    } else {
-                        if (row.Cells [i].Value == null) {
-                            isNull = true;
-                        } else {
-                            cellText = row.Cells [i].Value.ToString();
-                        }
-                    }
-                    if (!isNull) {
-                        if (header == "PK" && primary) {
-                            pk = "PRIMARY KEY";
-                        }
-                        if (header == "Nombre") {
-                            nombre = cellText;
-                        }
-                        if (header == "Tipo de dato") {
-                            tipo_dato = cellText;
-                        }
-                        if (header == "Tamaño") {
-                            tamano = cellText;
-                        }
-                        if (header == "Nullo") {
-                            if (valor) {
-                                nullo = "NULL";
-                            } else {
-                                nullo = "NOT NULL";
-                            }
-                        }
+                    if (checkNull == "True") {
+                        nullo = "NULL";
                     }
                 }
                 if (tipo_dato == "VARCHAR") {
-                    script += nombre + " " + tipo_dato + " (" + tamano + ") " + nullo + " " + pk + ",";
-                } else {
-                    script += nombre + " " + tipo_dato + " " + nullo + " " + pk + ",";
+                   script += nombre + " " + tipo_dato + " (" + tamano + ") " + nullo + " " + pk + ",\n";
+                }else if(tipo_dato == "INT" || tipo_dato == "BOOLEAN" || tipo_dato == "DOUBLE") {
+                    script += nombre + " " + tipo_dato + " " + nullo + " " + pk + ",\n";
+                }else if(tipo_dato == "DECIMAL" ) {
+                    script += nombre + " " + tipo_dato + " (" + tamano +","+escala+ ") " + nullo + " " + pk + ",\n";
                 }
+                cantidad++;
             }
-            string _script = "";
-            string [] wordArray = script.Split(',');
-            wordArray [0].Insert(0, " \n");
-            for (int i = 0; i < wordArray.Length -1; i++) {
-                if (i != (wordArray.Length - 2)) {
-                    _script += string.Concat(wordArray [i], ",\n");
-                } else {
-                    _script += wordArray [i];
-                }
+            try {
+                script = script.Substring(0, script.Length -2);
+            } catch (ArgumentOutOfRangeException e) {
                 
-
             }
-            //script = script.Substring(0, script.Length - 1);
-            return _script;
+
+            return script;
         }
 
         private void Tabla_SelectedIndexChanged(object sender, EventArgs e) {
             if (Tabla.SelectedTab == Tabla.TabPages [1]){
                 string query = @"CREATE TABLE " + nombre_tabla.Text + "(\n" + obtenerQuery() + "\n);";
-
                 caja.Text = query;
             }
+        }
+
+        private void contenido_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e) {
+           e.Row.Cells [0].Value = false;
+           e.Row.Cells [4].Value = "0";
+           e.Row.Cells [5].Value = false;
         }
     }
 }

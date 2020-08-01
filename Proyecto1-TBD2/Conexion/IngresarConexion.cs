@@ -78,6 +78,8 @@ namespace Proyecto1_TBD2.Conexion {
                 TreeNode nodo = node1.Nodes.Add(Names.ToString());
                 nodo.ImageIndex = 2;
                 nodo.SelectedImageIndex = 2;
+                nodo.ContextMenuStrip = subMenus [2];
+
             }
             this.Hide();
             connect.Close();
@@ -91,18 +93,23 @@ namespace Proyecto1_TBD2.Conexion {
             node1.ImageIndex = 1;
             node1.SelectedImageIndex = 1;
             node1.ContextMenuStrip = subMenus[0];
+
             node2 = node0.Nodes.Add("Indices");
             node2.ImageIndex = 1;
             node2.SelectedImageIndex = 1;
+
             node3 = node0.Nodes.Add("Vistas");
             node3.ImageIndex = 1;
             node3.SelectedImageIndex = 1;
+
             node4 = node0.Nodes.Add("Procedimiento Almacenados");
             node4.ImageIndex = 1;
             node4.SelectedImageIndex = 1;
+
             node5 = node0.Nodes.Add("Funciones");
             node5.ImageIndex = 1;
             node5.SelectedImageIndex = 1;
+
             node6 = node0.Nodes.Add("Triggers");
             node6.ImageIndex = 1;
             node6.SelectedImageIndex = 1;
