@@ -13,10 +13,11 @@ using System.Windows.Forms;
 namespace Proyecto1_TBD2.Tablas {
     public partial class CrearTablas:Form {
         TreeView arbol;
-        public CrearTablas(TreeView _arbol) {
+        List<ContextMenuStrip> subMenus;
+        public CrearTablas(TreeView _arbol, List<ContextMenuStrip> _menus) {
             InitializeComponent();
             arbol = _arbol;
-
+            subMenus = _menus;
         }
 
         private void CrearTablas_Load(object sender, EventArgs e) {
@@ -53,7 +54,12 @@ namespace Proyecto1_TBD2.Tablas {
                 connect.Open();
                 DB2Command cmd = new DB2Command(query, connect);
                 cmd.ExecuteNonQuery();
+                TreeNode nodo = arbol.SelectedNode.Nodes.Add(nombre_tabla.Text);
+                nodo.ImageIndex = 2;
+                nodo.SelectedImageIndex = 2;
+                nodo.ContextMenuStrip = subMenus [2];
                 MessageBox.Show("Su tabla ha sido creada correctamente!");
+                this.Hide();
             } catch (DB2Exception e) {
                 MessageBox.Show("Ha ocurrido un error al crear su tabla!\n" +e.Message);
             }

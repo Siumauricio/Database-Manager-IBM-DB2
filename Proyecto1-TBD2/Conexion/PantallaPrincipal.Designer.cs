@@ -38,15 +38,22 @@
             this.eliminarConexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenustablas = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Indices = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.crearIndicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subMenuIndices = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarIndiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarIndiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Tablas.SuspendLayout();
             this.panel_conexiones.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Basededatos.SuspendLayout();
             this.subMenustablas.SuspendLayout();
+            this.Indices.SuspendLayout();
+            this.subMenuIndices.SuspendLayout();
             this.SuspendLayout();
             // 
             // arbol_conexiones
@@ -67,6 +74,7 @@
             this.imageList1.Images.SetKeyName(0, "iconfinder_database_299089.png");
             this.imageList1.Images.SetKeyName(1, "iconfinder_icon-folder_211608.png");
             this.imageList1.Images.SetKeyName(2, "iconfinder_098_Spreadsheet_183529.png");
+            this.imageList1.Images.SetKeyName(3, "iconfinder_key-password-main-keys-privilege_3643767.png");
             // 
             // Tablas
             // 
@@ -145,7 +153,7 @@
             // eliminarConexionToolStripMenuItem
             // 
             this.eliminarConexionToolStripMenuItem.Name = "eliminarConexionToolStripMenuItem";
-            this.eliminarConexionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarConexionToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.eliminarConexionToolStripMenuItem.Text = "Eliminar Conexion";
             this.eliminarConexionToolStripMenuItem.Click += new System.EventHandler(this.eliminarConexionToolStripMenuItem_Click);
             // 
@@ -165,33 +173,68 @@
             this.subMenustablas.Name = "subMenustablas";
             this.subMenustablas.Size = new System.Drawing.Size(156, 92);
             // 
+            // verDatosToolStripMenuItem
+            // 
+            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
+            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.verDatosToolStripMenuItem.Text = "Ver Datos";
+            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
+            // 
+            // verTablaToolStripMenuItem
+            // 
+            this.verTablaToolStripMenuItem.Name = "verTablaToolStripMenuItem";
+            this.verTablaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.verTablaToolStripMenuItem.Text = "Ver Tabla";
+            this.verTablaToolStripMenuItem.Click += new System.EventHandler(this.verTablaToolStripMenuItem_Click);
+            // 
             // eliminarTablaToolStripMenuItem
             // 
             this.eliminarTablaToolStripMenuItem.Name = "eliminarTablaToolStripMenuItem";
-            this.eliminarTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarTablaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.eliminarTablaToolStripMenuItem.Text = "Eliminar Tabla";
             this.eliminarTablaToolStripMenuItem.Click += new System.EventHandler(this.eliminarTablaToolStripMenuItem_Click_1);
             // 
             // modificarTablaToolStripMenuItem
             // 
             this.modificarTablaToolStripMenuItem.Name = "modificarTablaToolStripMenuItem";
-            this.modificarTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarTablaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.modificarTablaToolStripMenuItem.Text = "Modificar Tabla";
             this.modificarTablaToolStripMenuItem.Click += new System.EventHandler(this.modificarTablaToolStripMenuItem_Click);
             // 
-            // verTablaToolStripMenuItem
+            // Indices
             // 
-            this.verTablaToolStripMenuItem.Name = "verTablaToolStripMenuItem";
-            this.verTablaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.verTablaToolStripMenuItem.Text = "Ver Tabla";
-            this.verTablaToolStripMenuItem.Click += new System.EventHandler(this.verTablaToolStripMenuItem_Click);
+            this.Indices.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crearIndicesToolStripMenuItem});
+            this.Indices.Name = "Indices";
+            this.Indices.Size = new System.Drawing.Size(143, 26);
             // 
-            // verDatosToolStripMenuItem
+            // crearIndicesToolStripMenuItem
             // 
-            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
-            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.verDatosToolStripMenuItem.Text = "Ver Datos";
-            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
+            this.crearIndicesToolStripMenuItem.Name = "crearIndicesToolStripMenuItem";
+            this.crearIndicesToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.crearIndicesToolStripMenuItem.Text = "Crear Indices";
+            this.crearIndicesToolStripMenuItem.Click += new System.EventHandler(this.crearIndicesToolStripMenuItem_Click);
+            // 
+            // subMenuIndices
+            // 
+            this.subMenuIndices.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarIndiceToolStripMenuItem,
+            this.modificarIndiceToolStripMenuItem});
+            this.subMenuIndices.Name = "subMenuIndices";
+            this.subMenuIndices.Size = new System.Drawing.Size(181, 70);
+            // 
+            // eliminarIndiceToolStripMenuItem
+            // 
+            this.eliminarIndiceToolStripMenuItem.Name = "eliminarIndiceToolStripMenuItem";
+            this.eliminarIndiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarIndiceToolStripMenuItem.Text = "Eliminar Indice";
+            this.eliminarIndiceToolStripMenuItem.Click += new System.EventHandler(this.eliminarIndiceToolStripMenuItem_Click);
+            // 
+            // modificarIndiceToolStripMenuItem
+            // 
+            this.modificarIndiceToolStripMenuItem.Name = "modificarIndiceToolStripMenuItem";
+            this.modificarIndiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarIndiceToolStripMenuItem.Text = "Modificar Indice";
             // 
             // PantallaPrincipal
             // 
@@ -208,6 +251,8 @@
             this.panel1.ResumeLayout(false);
             this.Basededatos.ResumeLayout(false);
             this.subMenustablas.ResumeLayout(false);
+            this.Indices.ResumeLayout(false);
+            this.subMenuIndices.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -230,6 +275,11 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarTablaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarTablaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verDatosToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip Indices;
+        private System.Windows.Forms.ToolStripMenuItem crearIndicesToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip subMenuIndices;
+        private System.Windows.Forms.ToolStripMenuItem eliminarIndiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarIndiceToolStripMenuItem;
     }
 }
 

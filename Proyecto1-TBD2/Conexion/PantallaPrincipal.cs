@@ -10,29 +10,27 @@ using System.Windows.Forms;
 using IBM.Data.DB2;
 using IBM.Data.DB2.iSeries;
 using Proyecto1_TBD2.Conexion;
+using Proyecto1_TBD2.Indices;
 using Proyecto1_TBD2.Tablas;
 
 namespace Proyecto1_TBD2 { 
     public partial class PantallaPrincipal:Form {
+        List<ContextMenuStrip> menus = new List<ContextMenuStrip>();
+
         public PantallaPrincipal() {
             InitializeComponent();
-            //TreeNode arbol = arbol_conexiones.Nodes.Add("IBM DB2 ");
-           // arbol_conexiones.
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-        }
 
-        private void arbol_conexiones_AfterSelect(object sender, TreeViewEventArgs e) {
-            //MessageBox.Show("Version servidor: " + connect.ServerVersion + "Base de datos: " + connect.Database.ToString());
-           // DB2Connection connect = new DB2Connection("Database=SAMPLE;UserID=db2admin;Password=siumauricio;Server=xxx.xxx.xxx.xxx:50000");
         }
 
         private void n_conexion_Click(object sender, EventArgs e) {
-            List<ContextMenuStrip> menus = new List<ContextMenuStrip>();
             menus.Add(Tablas);
             menus.Add(Basededatos);
             menus.Add(subMenustablas);
+            menus.Add(Indices);
+            menus.Add(subMenuIndices);
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
         }
@@ -41,7 +39,7 @@ namespace Proyecto1_TBD2 {
         }
 
         private void añadirTablaToolStripMenuItem_Click(object sender, EventArgs e) {
-            CrearTablas ct = new CrearTablas(arbol_conexiones);
+            CrearTablas ct = new CrearTablas(arbol_conexiones,menus);
             ct.Show();
         }
 
@@ -100,6 +98,27 @@ namespace Proyecto1_TBD2 {
             cn.Server = "localhost";
             DB2Connection connect = new DB2Connection(cn.ToString());
             return connect;
+        }
+
+        private void crearIndicesToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearIndice cd = new CrearIndice(arbol_conexiones,menus);
+            cd.Show();
+        }
+
+        private void eliminarIndiceToolStripMenuItem_Click(object sender, EventArgs e) {
+            TreeNode node = arbol_conexiones.SelectedNode;
+            DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
+            string query = @"DROP INDEX " + node.Text + ";";
+            try {
+                connect.Open();
+                DB2Command cmd = new DB2Command(query, connect);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Su indice ha sido eliminado correctamente!");
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Ha ocurrido un error al eliminar su indice!\n" + ex.Message);
+            }
+            connect.Close();
+            arbol_conexiones.SelectedNode.Remove();
         }
     }
 }

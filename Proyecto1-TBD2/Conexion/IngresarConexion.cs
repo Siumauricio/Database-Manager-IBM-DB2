@@ -70,8 +70,14 @@ namespace Proyecto1_TBD2.Conexion {
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
-           
-            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = 'DB2ADMIN'", connect);
+            extraerTablas(connect);
+            extraerIndicies(connect);
+            connect.Close();
+            this.Hide();
+        }
+
+        public void extraerTablas(DB2Connection connect) {
+            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = 'DB2ADMIN'", connect);//OBTENER TABLAS DE LA BASE DE DATOS
             DB2DataReader bff = cmd.ExecuteReader();
             while (bff.Read()) {
                 var Names = bff ["NAME"].ToString();
@@ -79,10 +85,36 @@ namespace Proyecto1_TBD2.Conexion {
                 nodo.ImageIndex = 2;
                 nodo.SelectedImageIndex = 2;
                 nodo.ContextMenuStrip = subMenus [2];
-
             }
-            this.Hide();
-            connect.Close();
+            bff.Close();
+        }
+
+        public void extraerIndicies(DB2Connection connect) {
+            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = 'DB2ADMIN';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2DataReader bff = cmd.ExecuteReader();
+
+            while (bff.Read()) {
+                var Names = bff ["indname"].ToString();
+                TreeNode nodo = node2.Nodes.Add(Names.ToString());
+                nodo.ImageIndex = 3;
+                nodo.SelectedImageIndex = 3;
+                nodo.ContextMenuStrip = subMenus [4];
+            }
+            bff.Close();
+        }
+        public void extrarProcedimientos(DB2Connection connect) {
+            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = 'DB2ADMIN';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2DataReader bff = cmd.ExecuteReader();
+            DB2DataAdapter adapter = new DB2DataAdapter(cmd);
+
+           //// while (bff.Read()) {
+           //   //  var Names = bff ["indname"].ToString();
+           //  //   TreeNode nodo = node2.Nodes.Add(Names.ToString());
+           //     nodo.ImageIndex = 3;
+           //     nodo.SelectedImageIndex = 3;
+           //     nodo.ContextMenuStrip = subMenus [4];
+           // }
+            bff.Close();
         }
 
         public void DibujarConexion(string db) {
@@ -97,14 +129,17 @@ namespace Proyecto1_TBD2.Conexion {
             node2 = node0.Nodes.Add("Indices");
             node2.ImageIndex = 1;
             node2.SelectedImageIndex = 1;
+            node2.ContextMenuStrip = subMenus [3];
+
+            node4 = node0.Nodes.Add("Procedimiento Almacenados");
+            node4.ImageIndex = 1;
+            node4.SelectedImageIndex = 1;
 
             node3 = node0.Nodes.Add("Vistas");
             node3.ImageIndex = 1;
             node3.SelectedImageIndex = 1;
 
-            node4 = node0.Nodes.Add("Procedimiento Almacenados");
-            node4.ImageIndex = 1;
-            node4.SelectedImageIndex = 1;
+
 
             node5 = node0.Nodes.Add("Funciones");
             node5.ImageIndex = 1;
