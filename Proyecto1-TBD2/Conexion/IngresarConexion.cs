@@ -34,7 +34,6 @@ namespace Proyecto1_TBD2.Conexion {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            //string connexion = @"Server=dashdb-txn-sbox-yp-lon02-06.services.eu-gb.bluemix.net:50000;DATABASE=BLUDB;UID=fbf33999;PWD=4n7-3s68ctrm92sv;";
             DB2ConnectionStringBuilder cn = new DB2ConnectionStringBuilder();
             cn.UserID = usuario.Text;
             cn.Password = contrasena.Text;
@@ -67,17 +66,19 @@ namespace Proyecto1_TBD2.Conexion {
                 connect.Open();
                 MessageBox.Show("Conexion Exitosa!\n" + "Version servidor: " + connect.ServerVersion + " Base de datos: " + connect.Database.ToString());
                 DibujarConexion(cn.Database);
+                extraerTablas(connect);
+                extraerIndicies(connect);
+                extrarProcedimientos(connect);
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
-            extraerTablas(connect);
-            extraerIndicies(connect);
+
             connect.Close();
             this.Hide();
         }
 
         public void extraerTablas(DB2Connection connect) {
-            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = 'DB2ADMIN'", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2Command cmd = new DB2Command("SELECT NAME FROM SYSIBM.SYSTABLES WHERE type = 'T' AND creator = '" + usuario.Text.ToUpper()+"';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
             DB2DataReader bff = cmd.ExecuteReader();
             while (bff.Read()) {
                 var Names = bff ["NAME"].ToString();
@@ -90,9 +91,8 @@ namespace Proyecto1_TBD2.Conexion {
         }
 
         public void extraerIndicies(DB2Connection connect) {
-            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = 'DB2ADMIN';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = '" + usuario.Text.ToUpper() + "';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
             DB2DataReader bff = cmd.ExecuteReader();
-
             while (bff.Read()) {
                 var Names = bff ["indname"].ToString();
                 TreeNode nodo = node2.Nodes.Add(Names.ToString());
@@ -102,18 +102,19 @@ namespace Proyecto1_TBD2.Conexion {
             }
             bff.Close();
         }
+
         public void extrarProcedimientos(DB2Connection connect) {
-            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = 'DB2ADMIN';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2Command cmd = new DB2Command("SELECT procname FROM syscat.procedures WHERE procschema = '" + usuario.Text.ToUpper() + "';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
             DB2DataReader bff = cmd.ExecuteReader();
             DB2DataAdapter adapter = new DB2DataAdapter(cmd);
 
-           //// while (bff.Read()) {
-           //   //  var Names = bff ["indname"].ToString();
-           //  //   TreeNode nodo = node2.Nodes.Add(Names.ToString());
-           //     nodo.ImageIndex = 3;
-           //     nodo.SelectedImageIndex = 3;
-           //     nodo.ContextMenuStrip = subMenus [4];
-           // }
+            while (bff.Read()) {
+            var Names = bff ["PROCNAME"].ToString();
+            TreeNode nodo = node4.Nodes.Add(Names.ToString());
+              nodo.ImageIndex = 4;
+              nodo.SelectedImageIndex =4;
+              nodo.ContextMenuStrip = subMenus [6];
+          }
             bff.Close();
         }
 
@@ -134,11 +135,11 @@ namespace Proyecto1_TBD2.Conexion {
             node4 = node0.Nodes.Add("Procedimiento Almacenados");
             node4.ImageIndex = 1;
             node4.SelectedImageIndex = 1;
+            node4.ContextMenuStrip = subMenus [5];
 
             node3 = node0.Nodes.Add("Vistas");
             node3.ImageIndex = 1;
             node3.SelectedImageIndex = 1;
-
 
 
             node5 = node0.Nodes.Add("Funciones");

@@ -18,16 +18,16 @@ namespace Proyecto1_TBD2.Tablas {
         string dato_antiguo = "";
         string nombre_llave = "";
         string query_ = "";
+
         public MostrarDatosTabla(TreeView _arbol_conexiones) {
             InitializeComponent();
             arbol_conexiones = _arbol_conexiones;
         }
-        DataTable table = new DataTable();
+
         private void MostrarDatosTabla_Load(object sender, EventArgs e) {
                 if (arbol_conexiones.SelectedNode == null || arbol_conexiones.SelectedNode.Parent == null) {
                     Hide();
                     return;
-                    
                 }
                 tabla_name.Text = "DATOS DE TABLA : " + arbol_conexiones.SelectedNode.Text;
                 PantallaPrincipal pn = new PantallaPrincipal();
@@ -37,42 +37,14 @@ namespace Proyecto1_TBD2.Tablas {
                     DB2Command cmd = new DB2Command();
                     cmd.Connection = connection;
                     cmd.CommandText = @"SELECT * FROM " + arbol_conexiones.SelectedNode.Text + ";";
-                    //DB2DataReader buffer = cmd.ExecuteReader();
                     DB2DataAdapter adapter = new DB2DataAdapter(cmd);
                     DataTable tabla = new DataTable();
                     adapter.Fill(tabla);
                     data_tablas.DataSource = tabla;
-                    //Extraer nombre de columnas de la tabla seleccionada y asignarlas al DATAGRIDVIEW
-                    //List<string> nombre_col = new List<string>();
-                    //    while (buffer.Read()) {
-                    //        var Names = buffer ["NAME"].ToString();
-                    //        nombre_col.Add(Names);
-                    //    }
-                    //    data_tablas.ColumnCount = nombre_col.Count;
-                    //    for (int i = 0; i < nombre_col.Count; i++) {
-                    //        data_tablas.Columns [i].Name = nombre_col [i];
-
-                    //    }
-                    //    buffer.Close();
-                    //    cmd.CommandText = @"SELECT * FROM " + arbol_conexiones.SelectedNode.Text;
-                    //    buffer = cmd.ExecuteReader();
-                    //    //Asignar los datos de la tabla seleccionada al datagridview en sus filas
-                    //    while (buffer.Read()) {
-                    //        int cant_filas = data_tablas.Rows.Add();
-                    //        for (int i = 0; i < nombre_col.Count; i++) {
-                    //            var data = buffer [nombre_col [i]].ToString();
-                    //            data_tablas.Rows [cant_filas].Cells [i].Value = data;
-                    //        }
-                    //    }
-                    //    buffer.Close();
-
                 } catch (DB2Exception ex) {
 
                 }
-                //    connection.Close();
-                //} catch (Exception ex) {
-
-                //}
+            connection.Close();
             }
         
         private void data_tablas_CellEndEdit(object sender, DataGridViewCellEventArgs e) {

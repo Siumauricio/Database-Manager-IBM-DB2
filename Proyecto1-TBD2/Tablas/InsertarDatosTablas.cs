@@ -71,5 +71,9 @@ namespace Proyecto1_TBD2.Tablas {
             }
             connection.Close();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e) {
+
+        }
     }
 }

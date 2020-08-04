@@ -11,6 +11,7 @@ using IBM.Data.DB2;
 using IBM.Data.DB2.iSeries;
 using Proyecto1_TBD2.Conexion;
 using Proyecto1_TBD2.Indices;
+using Proyecto1_TBD2.Procedimientos;
 using Proyecto1_TBD2.Tablas;
 
 namespace Proyecto1_TBD2 { 
@@ -31,6 +32,8 @@ namespace Proyecto1_TBD2 {
             menus.Add(subMenustablas);
             menus.Add(Indices);
             menus.Add(subMenuIndices);
+            menus.Add(Procedimientos);
+            menus.Add(subMenuProcedimientos) ;
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
         }
@@ -70,7 +73,8 @@ namespace Proyecto1_TBD2 {
         }
 
         private void modificarTablaToolStripMenuItem_Click(object sender, EventArgs e) {
-
+            ModificarTabla mt = new ModificarTabla(arbol_conexiones);
+            mt.Show();
         }
 
         private void verTablaToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -114,11 +118,43 @@ namespace Proyecto1_TBD2 {
                 DB2Command cmd = new DB2Command(query, connect);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Su indice ha sido eliminado correctamente!");
+                arbol_conexiones.SelectedNode.Remove();
+
             } catch (DB2Exception ex) {
                 MessageBox.Show("Ha ocurrido un error al eliminar su indice!\n" + ex.Message);
             }
             connect.Close();
-            arbol_conexiones.SelectedNode.Remove();
+        }
+
+        private void añadirProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearProcedimientos cp = new CrearProcedimientos();
+            cp.Show();
+        }
+
+        private void verProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
+            MostrarProcedimiento md = new MostrarProcedimiento(arbol_conexiones);
+            md.Show();
+
+        }
+
+        private void modificarProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarProcedimiento md = new ModificarProcedimiento(arbol_conexiones);
+            md.Show();
+        }
+
+        private void eliminarProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command("DROP PROCEDURE "+arbol_conexiones.SelectedNode.Text+";", connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Procedimiento Borrado!");
+                arbol_conexiones.SelectedNode.Remove();
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar procedimiento almacenado!\n"+ex.Message);
+            }
+            connection.Close();
+
         }
     }
 }
