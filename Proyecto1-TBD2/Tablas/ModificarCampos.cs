@@ -70,9 +70,8 @@ namespace Proyecto1_TBD2.Tablas {
                     DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD CONSTRAINT "+ nombre_campo +"_pk ADD PRIMARY KEY ("+nombre_campo +");", connection);
                     cmd.ExecuteNonQuery();
                 } else {
-                            DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD CONSTRAINT " + nombre_campo + "_pk ADD PRIMARY KEY (" + nombre_campo + ");", connection);
-                            cmd.ExecuteNonQuery();
-
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD CONSTRAINT " + nombre_campo + "_pk ADD PRIMARY KEY (" + nombre_campo + ");", connection);
+                    cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Campo modificado");
 

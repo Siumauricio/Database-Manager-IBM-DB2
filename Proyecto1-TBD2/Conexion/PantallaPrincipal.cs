@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IBM.Data.DB2;
 using IBM.Data.DB2.iSeries;
+using Proyecto1_TBD2.Cheks;
 using Proyecto1_TBD2.Conexion;
+using Proyecto1_TBD2.Funciones;
 using Proyecto1_TBD2.Indices;
 using Proyecto1_TBD2.Procedimientos;
 using Proyecto1_TBD2.Tablas;
+using Proyecto1_TBD2.Triggers;
+using Proyecto1_TBD2.Vistas;
 
 namespace Proyecto1_TBD2 { 
     public partial class PantallaPrincipal:Form {
@@ -34,6 +38,14 @@ namespace Proyecto1_TBD2 {
             menus.Add(subMenuIndices);
             menus.Add(Procedimientos);
             menus.Add(subMenuProcedimientos) ;
+            menus.Add(Funciones);
+            menus.Add(subMenuFunciones);
+            menus.Add(Vistas);
+            menus.Add(subMenuVistas);
+            menus.Add(Triggers);
+            menus.Add(subMenuTriggers);
+            menus.Add(Checks);
+            menus.Add(subMenuChecks);
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
         }
@@ -127,7 +139,7 @@ namespace Proyecto1_TBD2 {
         }
 
         private void añadirProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
-            CrearProcedimientos cp = new CrearProcedimientos();
+            CrearProcedimientos cp = new CrearProcedimientos(arbol_conexiones);
             cp.Show();
         }
 
@@ -155,6 +167,140 @@ namespace Proyecto1_TBD2 {
             }
             connection.Close();
 
+        }
+
+        private void refrescarToolStripMenuItem_Click(object sender, EventArgs e) {
+            IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
+            string db_antigua = arbol_conexiones.SelectedNode.Text;
+            arbol_conexiones.SelectedNode.Remove();
+            ic.Refrescar(db_antigua);
+
+        }
+
+        private void agregarProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearFunciones cf = new CrearFunciones(arbol_conexiones);
+            cf.Show();
+        }
+
+        private void eliminarFuncionToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command("DROP FUNCTION " + arbol_conexiones.SelectedNode.Text + ";", connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Funcion Borrada!");
+                arbol_conexiones.SelectedNode.Remove();
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar funcion!\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void abrirFuncionToolStripMenuItem_Click(object sender, EventArgs e) {
+            MostrarFuncion mf = new MostrarFuncion(arbol_conexiones);
+            mf.Show();
+        }
+
+        private void modificarFuncionToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarFuncion mf = new ModificarFuncion(arbol_conexiones);
+            mf.Show();
+        }
+
+        private void verVistaToolStripMenuItem_Click(object sender, EventArgs e) {
+            MostrarVista mt = new MostrarVista(arbol_conexiones);
+            mt.Show();
+        }
+
+        private void eliminarVistaToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command("DROP VIEW " + arbol_conexiones.SelectedNode.Text + ";", connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Vista Borrada!");
+                arbol_conexiones.SelectedNode.Remove();
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar Vista           !\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void agregarVistaToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearVista cv = new CrearVista(arbol_conexiones);
+            cv.Show();
+        }
+
+        private void modificarVistaToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarVista mf = new ModificarVista(arbol_conexiones);
+            mf.Show();
+        }
+
+        private void agregarTriggerToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearTriggers ct = new CrearTriggers(arbol_conexiones);
+            ct.Show();
+        }
+
+        private void verTriggerToolStripMenuItem_Click(object sender, EventArgs e) {
+            MostrarTriggers mt = new MostrarTriggers(arbol_conexiones);
+            mt.Show();
+        }
+
+        private void eliminarTriggerToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command("DROP TRIGGER " + arbol_conexiones.SelectedNode.Text + ";", connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Trigger Borrado!");
+                arbol_conexiones.SelectedNode.Remove();
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar Trigger!\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void modificarTriggerToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarTrigger mt = new ModificarTrigger(arbol_conexiones);
+            mt.Show();
+        }
+
+        private void eliminarCheckToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command("SELECT TBNAME FROM SYSIBM.SYSCHECKS WHERE TBCREATOR='DB2ADMIN' AND NAME='"+arbol_conexiones.SelectedNode.Text+"'", connection);
+                DB2DataReader buffer =  cmd.ExecuteReader();
+                
+                while (buffer.Read()) {
+                    var nombre_tabla = buffer ["TBNAME"].ToString();
+                    buffer.Close();
+                    cmd.CommandText = "ALTER TABLE " + nombre_tabla + " DROP CHECK " + arbol_conexiones.SelectedNode.Text + ";";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Check Borrado!");
+                    arbol_conexiones.SelectedNode.Remove();
+                    break;
+                }
+
+
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar Check!\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void agregarCheckToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearChecks ck = new CrearChecks(arbol_conexiones);
+            ck.Show();
+        }
+
+        private void abrirCheckToolStripMenuItem_Click(object sender, EventArgs e) {
+            MostrarCheck vc = new MostrarCheck(arbol_conexiones);
+            vc.Show();
+        }
+
+        private void modificarCheckToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarCheck mc = new ModificarCheck(arbol_conexiones);
+            mc.Show();
         }
     }
 }
