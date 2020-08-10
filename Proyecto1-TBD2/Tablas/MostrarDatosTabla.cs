@@ -136,7 +136,6 @@ namespace Proyecto1_TBD2.Tablas {
                     string [] pk = llave.Split('+');
                     string [] where = new string [pk.Length];
                     string texto = "";
-                    if (data_tablas.Rows [data_tablas.CurrentRow.Index].Cells [pk [1]].Value != null) {
 
                         for (int i = 1; i < pk.Length; i++) {
                             string query_builder = "";
@@ -164,11 +163,10 @@ namespace Proyecto1_TBD2.Tablas {
                         foreach (DataGridViewRow item in data_tablas.SelectedRows) {
                             data_tablas.Rows.RemoveAt(item.Index);
                         }
-                    }
                 } catch (DB2Exception ex) {
                     MessageBox.Show("Fallo al borrar este registro\n"+ex.Message);
 
-                }
+                }catch { }
                 cn.Close();
             }
         }

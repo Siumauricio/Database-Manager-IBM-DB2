@@ -24,6 +24,7 @@ namespace Proyecto1_TBD2.Conexion {
         TreeNode node5;
         TreeNode node6;
         TreeNode node7;
+        TreeNode node8;
         public IngresarConexion(TreeView _arbol, List<ContextMenuStrip> _subMenus) {
             arbol = _arbol;
             subMenus = _subMenus;
@@ -74,6 +75,7 @@ namespace Proyecto1_TBD2.Conexion {
                 extraerVistas(connect);
                 extraerTriggers(connect);
                 extraerChecks(connect);
+                extraerUsuarios(connect);
                 this.Hide();
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
@@ -99,6 +101,7 @@ namespace Proyecto1_TBD2.Conexion {
                 extraerVistas(connect);
                 extraerTriggers(connect);
                 extraerChecks(connect);
+                extraerUsuarios(connect);
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
@@ -145,8 +148,6 @@ namespace Proyecto1_TBD2.Conexion {
           }
             bff.Close();
         }
-
-
 
         public void extraerFunciones(DB2Connection connect) {
 
@@ -204,6 +205,19 @@ namespace Proyecto1_TBD2.Conexion {
             bff.Close();
         }
 
+        public void extraerUsuarios(DB2Connection connect) {
+            DB2Command cmd = new DB2Command(@"select * from sysibmadm.authorizationids WHERE AUTHIDTYPE='U';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2DataReader bff = cmd.ExecuteReader();
+            while (bff.Read()) {
+                var Names = bff ["AUTHID"].ToString();
+                TreeNode nodo = node8.Nodes.Add(Names.ToString());
+                nodo.ImageIndex = 9;
+                nodo.SelectedImageIndex = 9;
+              //  nodo.ContextMenuStrip = subMenus [14];
+            }
+            bff.Close();
+        }
+
         public void DibujarConexion(string db) {
             TreeNode node0 = arbol.Nodes.Add(db);
             node0.ContextMenuStrip = subMenus [1];
@@ -242,6 +256,11 @@ namespace Proyecto1_TBD2.Conexion {
             node7.ImageIndex = 1;
             node7.SelectedImageIndex = 1;
             node7.ContextMenuStrip = subMenus [13];
+
+            node8 = node0.Nodes.Add("Usuarios");
+            node8.ImageIndex = 1;
+            node8.SelectedImageIndex = 1;
+           // node8.ContextMenuStrip = subMenus [15];
         }
     }
 }

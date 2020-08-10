@@ -37,6 +37,9 @@ namespace Proyecto1_TBD2.Tablas {
                 int x = ls.IndexOf(data_tablas.Cells ["COLTYPE"].Value.ToString());
             if ( x >= 0 ) {
                 dato.SelectedIndex = x;
+                if (dato.SelectedItem.ToString() == "VARCHAR ") {
+                    escala.Enabled = false;
+                }
             }
         }
 
@@ -67,10 +70,10 @@ namespace Proyecto1_TBD2.Tablas {
             try {
                 connection.Open();
                 if (checkBox1.Checked) {
-                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD CONSTRAINT "+ nombre_campo +"_pk ADD PRIMARY KEY ("+nombre_campo +");", connection);
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD PRIMARY KEY ("+ nombre_campo+");", connection);
                     cmd.ExecuteNonQuery();
                 } else {
-                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ADD CONSTRAINT " + nombre_campo + "_pk ADD PRIMARY KEY (" + nombre_campo + ");", connection);
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " DROP PRIMARY KEY ", connection);
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Campo modificado");
@@ -82,7 +85,69 @@ namespace Proyecto1_TBD2.Tablas {
         }
 
         private void button6_Click(object sender, EventArgs e) {
-            nombre_campo = nombre.Text;
+            if (nombre_campo != nombre.Text) {
+                PantallaPrincipal pn = new PantallaPrincipal();
+                DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
+                try {
+                    connection.Open();
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " RENAME COLUMN " + nombre_campo + " TO "+nombre.Text+";", connection);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Campo modificado");
+                } catch (DB2Exception ex) {
+                    MessageBox.Show("Error al modificar\n" + ex.Message);
+                }
+
+                nombre_campo = nombre.Text;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                if (checkBox2.Checked) {
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ALTER COLUMN " + nombre_campo + " DROP NOT NULL;", connection);
+
+                    cmd.ExecuteNonQuery();
+                } else {
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ALTER COLUMN " + nombre_campo + " SET NOT NULL;", connection);
+
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Campo modificado");
+
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al modificar\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
+            try {
+                connection.Open();
+                if (escala.Enabled) {
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ALTER COLUMN " + nombre_campo + " SET DATA TYPE " + dato.SelectedItem.ToString() +" ("+tamano.Text+","+escala.Text+");", connection);
+                    cmd.ExecuteNonQuery();
+                } else {
+                    DB2Command cmd = new DB2Command("ALTER TABLE " + arbol.SelectedNode.Text + " ALTER COLUMN " + nombre_campo + " SET DATA TYPE " + dato.SelectedItem.ToString() +" ("+tamano.Text+");", connection);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Campo modificado");
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al modificar\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void dato_SelectedIndexChanged(object sender, EventArgs e) {
+            if (dato.SelectedItem.ToString() == "VARCHAR") {
+                escala.Enabled = false;
+            } else {
+                escala.Enabled = true;
+            }
         }
     }
 }

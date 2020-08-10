@@ -122,20 +122,27 @@ namespace Proyecto1_TBD2 {
         }
 
         private void eliminarIndiceToolStripMenuItem_Click(object sender, EventArgs e) {
-            TreeNode node = arbol_conexiones.SelectedNode;
-            DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
-            string query = @"DROP INDEX " + node.Text + ";";
             try {
+                string query = "ALTER TABLE ";
+                TreeNode node = arbol_conexiones.SelectedNode;
+                DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
                 connect.Open();
-                DB2Command cmd = new DB2Command(query, connect);
+                DB2Command cmd = new DB2Command("select tabname from syscat.indexes WHERE TABSCHEMA = 'DB2ADMIN' AND INDNAME ='"+arbol_conexiones.SelectedNode.Text+"' ;", connect);
+                DB2DataReader buffer = cmd.ExecuteReader();
+                while (buffer.Read()) {
+                    var palabra = buffer ["TABNAME"].ToString();
+                    query += palabra + " DROP CONSTRAINT "+node.Text+";";
+                    break;
+                }
+                buffer.Close();
+       
+                cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Su indice ha sido eliminado correctamente!");
                 arbol_conexiones.SelectedNode.Remove();
-
             } catch (DB2Exception ex) {
                 MessageBox.Show("Ha ocurrido un error al eliminar su indice!\n" + ex.Message);
             }
-            connect.Close();
         }
 
         private void añadirProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {

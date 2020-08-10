@@ -120,6 +120,7 @@
             this.imageList1.Images.SetKeyName(6, "iconfinder_icon-view_2867956.png");
             this.imageList1.Images.SetKeyName(7, "iconfinder_Electrical_plug_plug_plug_connector_plug_in_power_plug_4801292.png");
             this.imageList1.Images.SetKeyName(8, "iconfinder_ic_round_check_tick_5760403.png");
+            this.imageList1.Images.SetKeyName(9, "iconfinder_group_309042.png");
             // 
             // Tablas
             // 
@@ -467,7 +468,7 @@
             // agregarCheckToolStripMenuItem
             // 
             this.agregarCheckToolStripMenuItem.Name = "agregarCheckToolStripMenuItem";
-            this.agregarCheckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarCheckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.agregarCheckToolStripMenuItem.Text = "Agregar Check";
             this.agregarCheckToolStripMenuItem.Click += new System.EventHandler(this.agregarCheckToolStripMenuItem_Click);
             // 
@@ -478,26 +479,26 @@
             this.modificarCheckToolStripMenuItem,
             this.eliminarCheckToolStripMenuItem});
             this.subMenuChecks.Name = "subMenuChecks";
-            this.subMenuChecks.Size = new System.Drawing.Size(181, 92);
+            this.subMenuChecks.Size = new System.Drawing.Size(162, 70);
             // 
             // abrirCheckToolStripMenuItem
             // 
             this.abrirCheckToolStripMenuItem.Name = "abrirCheckToolStripMenuItem";
-            this.abrirCheckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirCheckToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.abrirCheckToolStripMenuItem.Text = "Abrir Check";
             this.abrirCheckToolStripMenuItem.Click += new System.EventHandler(this.abrirCheckToolStripMenuItem_Click);
             // 
             // modificarCheckToolStripMenuItem
             // 
             this.modificarCheckToolStripMenuItem.Name = "modificarCheckToolStripMenuItem";
-            this.modificarCheckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarCheckToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.modificarCheckToolStripMenuItem.Text = "Modificar Check";
             this.modificarCheckToolStripMenuItem.Click += new System.EventHandler(this.modificarCheckToolStripMenuItem_Click);
             // 
             // eliminarCheckToolStripMenuItem
             // 
             this.eliminarCheckToolStripMenuItem.Name = "eliminarCheckToolStripMenuItem";
-            this.eliminarCheckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarCheckToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.eliminarCheckToolStripMenuItem.Text = "Eliminar Check";
             this.eliminarCheckToolStripMenuItem.Click += new System.EventHandler(this.eliminarCheckToolStripMenuItem_Click);
             // 
