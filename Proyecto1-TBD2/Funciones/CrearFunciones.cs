@@ -33,6 +33,7 @@ namespace Proyecto1_TBD2.Funciones {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al crear funcion\n" + ex.Message);
             }
+            connection.Close();
         }
         public string obtenerQuery() {
             int cantidad = 0;

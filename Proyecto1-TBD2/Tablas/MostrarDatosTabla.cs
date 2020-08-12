@@ -44,7 +44,7 @@ namespace Proyecto1_TBD2.Tablas {
                 } catch (DB2Exception ex) {
 
                 }
-            connection.Close();
+                connection.Close();
             }
         
         private void data_tablas_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
@@ -66,6 +66,7 @@ namespace Proyecto1_TBD2.Tablas {
                             MessageBox.Show("Error al modificar su tabla\n"+ex.Message);
                             dgv.Rows [rowIdx.Value].Cells [colIdx.Value].Value = dato_antiguo;
                         }
+                    connection.Close();
                     };
                 };
         }

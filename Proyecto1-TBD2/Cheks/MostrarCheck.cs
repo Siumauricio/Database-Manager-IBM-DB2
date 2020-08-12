@@ -29,9 +29,11 @@ namespace Proyecto1_TBD2.Cheks {
                     richTextBox1.Text = function;
                     break;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar Check\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

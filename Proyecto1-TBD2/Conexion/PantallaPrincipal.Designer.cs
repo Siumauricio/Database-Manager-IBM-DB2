@@ -30,8 +30,9 @@
             this.Tablas = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_conexiones = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.refresh = new System.Windows.Forms.Button();
-            this.n_conexion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Basededatos = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -77,6 +78,8 @@
             this.abrirCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Tablas.SuspendLayout();
             this.panel_conexiones.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -94,17 +97,20 @@
             this.subMenuTriggers.SuspendLayout();
             this.Checks.SuspendLayout();
             this.subMenuChecks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // arbol_conexiones
             // 
+            this.arbol_conexiones.BackColor = System.Drawing.SystemColors.Window;
+            this.arbol_conexiones.Font = new System.Drawing.Font("Verdana", 12F);
             this.arbol_conexiones.ForeColor = System.Drawing.Color.Black;
             this.arbol_conexiones.ImageIndex = 0;
             this.arbol_conexiones.ImageList = this.imageList1;
-            this.arbol_conexiones.Location = new System.Drawing.Point(3, 93);
+            this.arbol_conexiones.Location = new System.Drawing.Point(3, 87);
             this.arbol_conexiones.Name = "arbol_conexiones";
             this.arbol_conexiones.SelectedImageIndex = 0;
-            this.arbol_conexiones.Size = new System.Drawing.Size(218, 495);
+            this.arbol_conexiones.Size = new System.Drawing.Size(218, 605);
             this.arbol_conexiones.TabIndex = 0;
             // 
             // imageList1
@@ -138,47 +144,58 @@
             // 
             // panel_conexiones
             // 
+            this.panel_conexiones.Controls.Add(this.button1);
             this.panel_conexiones.Controls.Add(this.refresh);
-            this.panel_conexiones.Controls.Add(this.n_conexion);
             this.panel_conexiones.Controls.Add(this.label1);
-            this.panel_conexiones.Location = new System.Drawing.Point(6, 27);
+            this.panel_conexiones.Location = new System.Drawing.Point(6, 3);
             this.panel_conexiones.Name = "panel_conexiones";
-            this.panel_conexiones.Size = new System.Drawing.Size(215, 60);
+            this.panel_conexiones.Size = new System.Drawing.Size(215, 84);
             this.panel_conexiones.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.ForeColor = System.Drawing.Color.Transparent;
+            this.button1.ImageIndex = 0;
+            this.button1.ImageList = this.imageList2;
+            this.button1.Location = new System.Drawing.Point(12, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 23);
+            this.button1.TabIndex = 2;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "iconfinder_sign-add_299068.png");
+            this.imageList2.Images.SetKeyName(1, "iconfinder_f-cross_256_282471.png");
             // 
             // refresh
             // 
-            this.refresh.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.refresh.Location = new System.Drawing.Point(130, 33);
+            this.refresh.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh.Location = new System.Drawing.Point(60, 45);
             this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(75, 23);
+            this.refresh.Size = new System.Drawing.Size(87, 23);
             this.refresh.TabIndex = 2;
             this.refresh.Text = "Refresh";
             this.refresh.UseVisualStyleBackColor = true;
             // 
-            // n_conexion
-            // 
-            this.n_conexion.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.n_conexion.Location = new System.Drawing.Point(0, 33);
-            this.n_conexion.Name = "n_conexion";
-            this.n_conexion.Size = new System.Drawing.Size(124, 24);
-            this.n_conexion.TabIndex = 1;
-            this.n_conexion.Text = "Nueva Conexion";
-            this.n_conexion.UseVisualStyleBackColor = true;
-            this.n_conexion.Click += new System.EventHandler(this.n_conexion_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label1.Font = new System.Drawing.Font("Verdana", 12F);
             this.label1.Location = new System.Drawing.Point(9, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.Size = new System.Drawing.Size(102, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Conexiones";
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.arbol_conexiones);
             this.panel1.Controls.Add(this.panel_conexiones);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -502,15 +519,34 @@
             this.eliminarCheckToolStripMenuItem.Text = "Eliminar Check";
             this.eliminarCheckToolStripMenuItem.Click += new System.EventHandler(this.eliminarCheckToolStripMenuItem_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(220, 87);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(907, 340);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(220, 433);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(915, 259);
+            this.dataGridView1.TabIndex = 3;
+            // 
             // PantallaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1127, 695);
             this.Controls.Add(this.panel1);
             this.Name = "PantallaPrincipal";
             this.Text = "IBM DB2";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MdiChildActivate += new System.EventHandler(this.PantallaPrincipal_MdiChildActivate);
             this.Tablas.ResumeLayout(false);
             this.panel_conexiones.ResumeLayout(false);
             this.panel_conexiones.PerformLayout();
@@ -529,6 +565,7 @@
             this.subMenuTriggers.ResumeLayout(false);
             this.Checks.ResumeLayout(false);
             this.subMenuChecks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -537,7 +574,6 @@
         private System.Windows.Forms.TreeView arbol_conexiones;
         private System.Windows.Forms.Panel panel_conexiones;
         private System.Windows.Forms.Button refresh;
-        private System.Windows.Forms.Button n_conexion;
         private System.Windows.Forms.ContextMenuStrip Tablas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ImageList imageList1;
@@ -586,6 +622,10 @@
         private System.Windows.Forms.ToolStripMenuItem abrirCheckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarCheckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarCheckToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

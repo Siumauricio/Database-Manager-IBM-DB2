@@ -36,6 +36,7 @@ namespace Proyecto1_TBD2.Vistas {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Revise la sintaxis\n" + ex.Message);
             }
+            connection.Close();
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -54,6 +55,7 @@ namespace Proyecto1_TBD2.Vistas {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error  al crear vista\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

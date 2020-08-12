@@ -29,9 +29,11 @@ namespace Proyecto1_TBD2.Funciones {
                     richTextBox1.Text = function;
                     break;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar funcion\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

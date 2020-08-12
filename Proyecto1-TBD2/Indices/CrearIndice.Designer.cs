@@ -25,29 +25,30 @@
         private void InitializeComponent() {
             this.tabla = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.data_set = new System.Windows.Forms.DataGridView();
+            this.Expresion = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Orden = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ddl = new System.Windows.Forms.RichTextBox();
             this.nombre_indice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.caja = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.data_set = new System.Windows.Forms.DataGridView();
-            this.Expresion = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Orden = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.caja2 = new System.Windows.Forms.ComboBox();
-            this.ddl = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabla.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_set)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabla
             // 
             this.tabla.Controls.Add(this.tabPage1);
             this.tabla.Controls.Add(this.tabPage2);
+            this.tabla.Font = new System.Drawing.Font("Verdana", 12F);
             this.tabla.Location = new System.Drawing.Point(88, 166);
             this.tabla.Name = "tabla";
             this.tabla.SelectedIndex = 0;
@@ -58,58 +59,13 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.data_set);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(575, 288);
+            this.tabPage1.Size = new System.Drawing.Size(575, 283);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Indices";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ddl);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(575, 288);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "DDL";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // nombre_indice
-            // 
-            this.nombre_indice.Location = new System.Drawing.Point(293, 57);
-            this.nombre_indice.Name = "nombre_indice";
-            this.nombre_indice.Size = new System.Drawing.Size(255, 20);
-            this.nombre_indice.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(183, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nombre Indice";
-            // 
-            // caja
-            // 
-            this.caja.FormattingEnabled = true;
-            this.caja.Location = new System.Drawing.Point(293, 97);
-            this.caja.Name = "caja";
-            this.caja.Size = new System.Drawing.Size(255, 21);
-            this.caja.TabIndex = 3;
-            this.caja.SelectedIndexChanged += new System.EventHandler(this.caja_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Nombre Tabla";
             // 
             // data_set
             // 
@@ -121,7 +77,7 @@
             this.data_set.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data_set.Location = new System.Drawing.Point(3, 3);
             this.data_set.Name = "data_set";
-            this.data_set.Size = new System.Drawing.Size(569, 282);
+            this.data_set.Size = new System.Drawing.Size(569, 277);
             this.data_set.TabIndex = 0;
             // 
             // Expresion
@@ -138,6 +94,64 @@
             "DESC"});
             this.Orden.Name = "Orden";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ddl);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(575, 283);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "DDL";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ddl
+            // 
+            this.ddl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddl.Location = new System.Drawing.Point(3, 3);
+            this.ddl.Name = "ddl";
+            this.ddl.Size = new System.Drawing.Size(569, 277);
+            this.ddl.TabIndex = 0;
+            this.ddl.Text = "";
+            // 
+            // nombre_indice
+            // 
+            this.nombre_indice.Font = new System.Drawing.Font("Verdana", 12F);
+            this.nombre_indice.Location = new System.Drawing.Point(300, 57);
+            this.nombre_indice.Name = "nombre_indice";
+            this.nombre_indice.Size = new System.Drawing.Size(255, 27);
+            this.nombre_indice.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 12F);
+            this.label1.Location = new System.Drawing.Point(167, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Nombre Indice";
+            // 
+            // caja
+            // 
+            this.caja.Font = new System.Drawing.Font("Verdana", 12F);
+            this.caja.FormattingEnabled = true;
+            this.caja.Location = new System.Drawing.Point(300, 97);
+            this.caja.Name = "caja";
+            this.caja.Size = new System.Drawing.Size(255, 26);
+            this.caja.TabIndex = 3;
+            this.caja.SelectedIndexChanged += new System.EventHandler(this.caja_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 12F);
+            this.label2.Location = new System.Drawing.Point(167, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 18);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Nombre Tabla";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(88, 498);
@@ -151,31 +165,24 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(183, 136);
+            this.label3.Font = new System.Drawing.Font("Verdana", 12F);
+            this.label3.Location = new System.Drawing.Point(164, 136);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.Size = new System.Drawing.Size(123, 18);
             this.label3.TabIndex = 7;
             this.label3.Text = "Tipo de indice";
             // 
             // caja2
             // 
+            this.caja2.Font = new System.Drawing.Font("Verdana", 12F);
             this.caja2.FormattingEnabled = true;
             this.caja2.Items.AddRange(new object[] {
             "NO UNICO",
             "UNICO"});
-            this.caja2.Location = new System.Drawing.Point(293, 133);
+            this.caja2.Location = new System.Drawing.Point(300, 133);
             this.caja2.Name = "caja2";
-            this.caja2.Size = new System.Drawing.Size(255, 21);
+            this.caja2.Size = new System.Drawing.Size(255, 26);
             this.caja2.TabIndex = 6;
-            // 
-            // ddl
-            // 
-            this.ddl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ddl.Location = new System.Drawing.Point(3, 3);
-            this.ddl.Name = "ddl";
-            this.ddl.Size = new System.Drawing.Size(569, 282);
-            this.ddl.TabIndex = 0;
-            this.ddl.Text = "";
             // 
             // button2
             // 
@@ -206,8 +213,8 @@
             this.Load += new System.EventHandler(this.CrearIndice_Load);
             this.tabla.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.data_set)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

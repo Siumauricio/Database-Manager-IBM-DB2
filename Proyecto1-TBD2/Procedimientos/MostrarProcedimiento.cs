@@ -28,9 +28,11 @@ namespace Proyecto1_TBD2.Procedimientos {
                     var texto = buffer ["ROUTINE_DEFINITION"].ToString();
                     richTextBox1.Text = texto;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
 
             }
+            connection.Close();
         }
     }
 }

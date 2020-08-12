@@ -13,5 +13,9 @@ namespace Proyecto1_TBD2.Conexion {
         public CrearBD() {
             InitializeComponent();
         }
+
+        private void CrearBD_Load(object sender, EventArgs e) {
+
+        }
     }
 }

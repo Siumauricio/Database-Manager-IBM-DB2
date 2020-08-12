@@ -19,8 +19,9 @@ namespace Proyecto1_TBD2.Vistas {
 
         private void MostrarVista_Load(object sender, EventArgs e) {
             PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
+
             try {
-                DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
                 connection.Open();
                 DB2Command cmd = new DB2Command(@"select TEXT from SYSIBM.SYSVIEWS WHERE CREATOR='DB2ADMIN' and NAME='" + arbol.SelectedNode.Text + "';", connection);
                 DB2DataReader buffer = cmd.ExecuteReader();
@@ -29,9 +30,11 @@ namespace Proyecto1_TBD2.Vistas {
                     richTextBox1.Text = function;
                     break;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar Vista\n" + ex.Message);
             }catch(Exception ex2) { }
+            connection.Close();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Proyecto1_TBD2.Triggers {
             } catch (DB2Exception ex) {
 
             }
+            connection.Close();
 
         }
     }

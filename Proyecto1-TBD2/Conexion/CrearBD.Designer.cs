@@ -83,6 +83,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "CrearBD";
             this.Text = "CrearBD";
+            this.Load += new System.EventHandler(this.CrearBD_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -49,7 +49,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(321, 45);
+            this.textBox1.Location = new System.Drawing.Point(364, 48);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(213, 20);
             this.textBox1.TabIndex = 1;
@@ -57,16 +57,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 12F);
             this.label1.Location = new System.Drawing.Point(225, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.Size = new System.Drawing.Size(71, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre";
             // 
             // caja
             // 
             this.caja.FormattingEnabled = true;
-            this.caja.Location = new System.Drawing.Point(321, 89);
+            this.caja.Location = new System.Drawing.Point(364, 89);
             this.caja.Name = "caja";
             this.caja.Size = new System.Drawing.Size(213, 21);
             this.caja.TabIndex = 3;
@@ -75,9 +76,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 12F);
             this.label2.Location = new System.Drawing.Point(225, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.Size = new System.Drawing.Size(60, 18);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tablas";
             // 
@@ -121,10 +123,10 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.listBox2);
             this.tabPage1.Controls.Add(this.listBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(561, 365);
+            this.tabPage1.Size = new System.Drawing.Size(561, 360);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Eventos";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -152,17 +154,19 @@
             // listBox4
             // 
             this.listBox4.FormattingEnabled = true;
+            this.listBox4.ItemHeight = 18;
             this.listBox4.Location = new System.Drawing.Point(303, 190);
             this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(126, 134);
+            this.listBox4.Size = new System.Drawing.Size(126, 130);
             this.listBox4.TabIndex = 7;
             // 
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 18;
             this.listBox3.Location = new System.Drawing.Point(102, 190);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(126, 134);
+            this.listBox3.Size = new System.Drawing.Size(126, 130);
             this.listBox3.TabIndex = 6;
             // 
             // button3
@@ -188,27 +192,30 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 18;
             this.listBox2.Location = new System.Drawing.Point(303, 19);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(126, 134);
+            this.listBox2.Size = new System.Drawing.Size(126, 130);
             this.listBox2.TabIndex = 1;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
             this.listBox1.Items.AddRange(new object[] {
             "INSERT",
             "UPDATE",
             "DELETE"});
             this.listBox1.Location = new System.Drawing.Point(102, 19);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(126, 134);
+            this.listBox1.Size = new System.Drawing.Size(126, 130);
             this.listBox1.TabIndex = 0;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Verdana", 12F);
             this.tabControl1.Location = new System.Drawing.Point(104, 154);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -222,7 +229,7 @@
             this.comboBox2.Items.AddRange(new object[] {
             "BEFORE",
             "AFTER"});
-            this.comboBox2.Location = new System.Drawing.Point(321, 127);
+            this.comboBox2.Location = new System.Drawing.Point(364, 127);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(213, 21);
             this.comboBox2.TabIndex = 5;
@@ -230,9 +237,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Verdana", 12F);
             this.label3.Location = new System.Drawing.Point(225, 127);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(124, 18);
             this.label3.TabIndex = 6;
             this.label3.Text = "Temporizacion";
             // 

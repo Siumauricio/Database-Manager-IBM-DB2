@@ -57,7 +57,7 @@
             comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             comboBox1.FormattingEnabled = true;
             comboBox1.IntegralHeight = false;
-            comboBox1.Location = new System.Drawing.Point(162, 40);
+            comboBox1.Location = new System.Drawing.Point(247, 44);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(302, 23);
             comboBox1.TabIndex = 0;
@@ -65,16 +65,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(102, 45);
+            this.label1.Font = new System.Drawing.Font("Verdana", 12F);
+            this.label1.Location = new System.Drawing.Point(116, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(89, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Esquema:";
             // 
             // nombre_tabla
             // 
             this.nombre_tabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombre_tabla.Location = new System.Drawing.Point(162, 81);
+            this.nombre_tabla.Location = new System.Drawing.Point(247, 86);
             this.nombre_tabla.Name = "nombre_tabla";
             this.nombre_tabla.Size = new System.Drawing.Size(302, 21);
             this.nombre_tabla.TabIndex = 2;
@@ -82,9 +83,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(102, 86);
+            this.label2.Font = new System.Drawing.Font("Verdana", 12F);
+            this.label2.Location = new System.Drawing.Point(127, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(78, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Nombre:";
             // 
@@ -92,6 +94,7 @@
             // 
             this.Tabla.Controls.Add(this.tabPage1);
             this.Tabla.Controls.Add(this.tabPage2);
+            this.Tabla.Font = new System.Drawing.Font("Verdana", 12F);
             this.Tabla.Location = new System.Drawing.Point(58, 154);
             this.Tabla.Name = "Tabla";
             this.Tabla.SelectedIndex = 0;
@@ -102,10 +105,10 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.contenido);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(601, 311);
+            this.tabPage1.Size = new System.Drawing.Size(601, 306);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tablas";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -124,7 +127,7 @@
             this.contenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenido.Location = new System.Drawing.Point(3, 3);
             this.contenido.Name = "contenido";
-            this.contenido.Size = new System.Drawing.Size(595, 305);
+            this.contenido.Size = new System.Drawing.Size(595, 300);
             this.contenido.TabIndex = 0;
             this.contenido.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.contenido_DefaultValuesNeeded);
             // 
@@ -167,10 +170,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.caja);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(601, 311);
+            this.tabPage2.Size = new System.Drawing.Size(601, 306);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DDL";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -180,7 +183,7 @@
             this.caja.Dock = System.Windows.Forms.DockStyle.Fill;
             this.caja.Location = new System.Drawing.Point(3, 3);
             this.caja.Name = "caja";
-            this.caja.Size = new System.Drawing.Size(595, 305);
+            this.caja.Size = new System.Drawing.Size(595, 300);
             this.caja.TabIndex = 0;
             this.caja.Text = "";
             // 
@@ -206,6 +209,7 @@
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Verdana", 12F);
             this.button2.Location = new System.Drawing.Point(548, 507);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);

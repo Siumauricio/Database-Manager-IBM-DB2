@@ -37,6 +37,7 @@ namespace Proyecto1_TBD2.Cheks {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar Check\n" + ex.Message);
             }
+            connection.Close();
         }
         public string obtenerTabla() {
             PantallaPrincipal pn = new PantallaPrincipal();
@@ -52,6 +53,7 @@ namespace Proyecto1_TBD2.Cheks {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error \n" + ex.Message);
             }
+            connection.Close();
             return "";
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -78,6 +80,7 @@ namespace Proyecto1_TBD2.Cheks {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al modificar check \n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

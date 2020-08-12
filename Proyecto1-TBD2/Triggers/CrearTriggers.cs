@@ -137,9 +137,9 @@ namespace Proyecto1_TBD2.Triggers {
         }
 
         private void button2_Click(object sender, EventArgs e) {
+            PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Text);
             try {
-                PantallaPrincipal pn = new PantallaPrincipal();
-                DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Text);
                 connection.Open();
                 DB2Command cmd = new DB2Command(richTextBox1.Text, connection);
                 cmd.ExecuteNonQuery();
@@ -148,6 +148,7 @@ namespace Proyecto1_TBD2.Triggers {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error  al crear trigger\n" + ex.Message);
             }catch (Exception ex2) { }
+            connection.Close();
         }
     }
 }

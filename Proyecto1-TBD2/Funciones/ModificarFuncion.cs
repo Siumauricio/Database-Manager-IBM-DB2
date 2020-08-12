@@ -30,9 +30,11 @@ namespace Proyecto1_TBD2.Funciones {
                     richTextBox1.Text = function;
                     break;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar funcion\n" + ex.Message);
             }
+            connection.Close();
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -47,6 +49,7 @@ namespace Proyecto1_TBD2.Funciones {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al Modificar funcion\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

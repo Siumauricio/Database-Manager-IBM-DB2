@@ -28,9 +28,11 @@ namespace Proyecto1_TBD2.Procedimientos {
                     var texto = buffer ["ROUTINE_DEFINITION"].ToString();
                     richTextBox1.Text = texto;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
 
             }
+            connection.Close();
         }
 
         private void Modificar_Click(object sender, EventArgs e) {
@@ -45,6 +47,7 @@ namespace Proyecto1_TBD2.Procedimientos {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al Modificar Procedimiento\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

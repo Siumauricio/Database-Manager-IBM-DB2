@@ -35,9 +35,11 @@ namespace Proyecto1_TBD2.Vistas {
                     textBox1.Text = valor;
                     break;
                 }
+                buffer.Close();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar Vista\n" + ex.Message);
             }
+            connection.Close();
         }
         public void comprobarSintaxis() {
             PantallaPrincipal pn = new PantallaPrincipal();
@@ -50,6 +52,7 @@ namespace Proyecto1_TBD2.Vistas {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Revise la sintaxis\n" + ex.Message);
             }
+            connection.Close();
         }
         private void button2_Click(object sender, EventArgs e) {
             comprobarSintaxis();
@@ -75,6 +78,7 @@ namespace Proyecto1_TBD2.Vistas {
             } catch (DB2Exception ex) {
                 MessageBox.Show("error al modificar vista\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 }

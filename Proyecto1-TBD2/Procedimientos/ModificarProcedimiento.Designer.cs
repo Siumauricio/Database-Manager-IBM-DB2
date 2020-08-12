@@ -29,17 +29,19 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Verdana", 12F);
             this.richTextBox1.Location = new System.Drawing.Point(94, 120);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(575, 329);
+            this.richTextBox1.Size = new System.Drawing.Size(589, 329);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // Modificar
             // 
+            this.Modificar.Font = new System.Drawing.Font("Verdana", 12F);
             this.Modificar.Location = new System.Drawing.Point(107, 495);
             this.Modificar.Name = "Modificar";
-            this.Modificar.Size = new System.Drawing.Size(75, 23);
+            this.Modificar.Size = new System.Drawing.Size(89, 23);
             this.Modificar.TabIndex = 1;
             this.Modificar.Text = "Modificar";
             this.Modificar.UseVisualStyleBackColor = true;

@@ -110,6 +110,7 @@ namespace Proyecto1_TBD2.Procedimientos {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al crear procedimiento\n" + ex.Message);
             }
+            connection.Close();
         }
     }
 

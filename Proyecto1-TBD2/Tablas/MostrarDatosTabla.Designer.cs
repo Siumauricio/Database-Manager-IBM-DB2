@@ -37,6 +37,7 @@
             // control_tabla
             // 
             this.control_tabla.Controls.Add(this.Datos);
+            this.control_tabla.Font = new System.Drawing.Font("Verdana", 12F);
             this.control_tabla.Location = new System.Drawing.Point(65, 79);
             this.control_tabla.Name = "control_tabla";
             this.control_tabla.SelectedIndex = 0;
@@ -46,10 +47,10 @@
             // Datos
             // 
             this.Datos.Controls.Add(this.data_tablas);
-            this.Datos.Location = new System.Drawing.Point(4, 22);
+            this.Datos.Location = new System.Drawing.Point(4, 27);
             this.Datos.Name = "Datos";
-            this.Datos.Padding = new System.Windows.Forms.Padding(3);
-            this.Datos.Size = new System.Drawing.Size(642, 402);
+            this.Datos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Datos.Size = new System.Drawing.Size(642, 397);
             this.Datos.TabIndex = 0;
             this.Datos.Text = "Datos";
             this.Datos.UseVisualStyleBackColor = true;
@@ -60,7 +61,7 @@
             this.data_tablas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data_tablas.Location = new System.Drawing.Point(3, 3);
             this.data_tablas.Name = "data_tablas";
-            this.data_tablas.Size = new System.Drawing.Size(636, 396);
+            this.data_tablas.Size = new System.Drawing.Size(636, 391);
             this.data_tablas.TabIndex = 0;
             this.data_tablas.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.data_tablas_CellBeginEdit);
             this.data_tablas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_tablas_CellEndEdit);
@@ -68,19 +69,20 @@
             // tabla_name
             // 
             this.tabla_name.AutoSize = true;
-            this.tabla_name.Font = new System.Drawing.Font("Yu Gothic UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabla_name.Font = new System.Drawing.Font("Verdana", 12F);
             this.tabla_name.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabla_name.Location = new System.Drawing.Point(274, 32);
             this.tabla_name.Name = "tabla_name";
-            this.tabla_name.Size = new System.Drawing.Size(68, 30);
+            this.tabla_name.Size = new System.Drawing.Size(58, 18);
             this.tabla_name.TabIndex = 1;
             this.tabla_name.Text = "label1";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(146, 522);
+            this.button1.Font = new System.Drawing.Font("Verdana", 12F);
+            this.button1.Location = new System.Drawing.Point(163, 522);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(95, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Eliminar";
             this.button1.UseVisualStyleBackColor = true;
@@ -88,9 +90,10 @@
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Verdana", 12F);
             this.button2.Location = new System.Drawing.Point(65, 522);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(92, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Agregar";
             this.button2.UseVisualStyleBackColor = true;

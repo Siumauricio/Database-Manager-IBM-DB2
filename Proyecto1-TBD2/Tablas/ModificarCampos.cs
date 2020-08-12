@@ -54,10 +54,11 @@ namespace Proyecto1_TBD2.Tablas {
                 if (buffer.Read()) {
                     checkBox1.Checked = true;
                 }
-
+                buffer.Close();
             } catch (DB2Exception ex) {
 
             }
+            connection.Close();
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -81,6 +82,7 @@ namespace Proyecto1_TBD2.Tablas {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al modificar\n" + ex.Message);
             }
+            connection.Close();
 
         }
 
@@ -96,9 +98,11 @@ namespace Proyecto1_TBD2.Tablas {
                 } catch (DB2Exception ex) {
                     MessageBox.Show("Error al modificar\n" + ex.Message);
                 }
-
+                connection.Close();
                 nombre_campo = nombre.Text;
+
             }
+
         }
 
         private void button3_Click(object sender, EventArgs e) {

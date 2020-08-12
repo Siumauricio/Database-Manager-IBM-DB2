@@ -21,7 +21,6 @@ namespace Proyecto1_TBD2.Tablas {
         }
 
         private void CrearTablas_Load(object sender, EventArgs e) {
-            
         }
 
         private void button1_Click(object sender, EventArgs e) {

@@ -19,8 +19,8 @@ namespace Proyecto1_TBD2.Triggers {
 
         private void ModificarTrigger_Load(object sender, EventArgs e) {
             PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
             try {
-                DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
                 connection.Open();
                 DB2Command cmd = new DB2Command(@"SELECT TEXT FROM SYSCAT.TRIGGERS WHERE TRIGSCHEMA ='DB2ADMIN' AND TRIGNAME= '" + arbol.SelectedNode.Text + "';", connection);//OBTENER TABLAS DE LA BASE DE DATOS
                 DB2DataReader buffer = cmd.ExecuteReader();
@@ -32,12 +32,13 @@ namespace Proyecto1_TBD2.Triggers {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al mostrar Vista\n" + ex.Message);
             } catch (Exception ex2) { }
+            connection.Close();
         }
 
         private void button1_Click(object sender, EventArgs e) {
             PantallaPrincipal pn = new PantallaPrincipal();
+            DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
             try {
-                DB2Connection connection = pn.obtenerConexion(arbol.SelectedNode.Parent.Parent.Text);
                 connection.Open();
                 DB2Command cmd = new DB2Command(richTextBox1.Text, connection);
                 cmd.ExecuteNonQuery();
@@ -46,6 +47,7 @@ namespace Proyecto1_TBD2.Triggers {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Error al modificar Trigger\n" + ex.Message);
             } catch (Exception ex2) { }
+            connection.Close();
         }
     }
 }

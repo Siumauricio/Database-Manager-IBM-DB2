@@ -43,15 +43,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 12F);
             this.label1.Location = new System.Drawing.Point(137, 104);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.Size = new System.Drawing.Size(139, 18);
             this.label1.TabIndex = 5;
             this.label1.Text = "Nombre Funcion";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(257, 101);
+            this.textBox1.Location = new System.Drawing.Point(296, 105);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(242, 20);
             this.textBox1.TabIndex = 4;
@@ -60,20 +61,21 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Verdana", 12F);
             this.tabControl1.Location = new System.Drawing.Point(133, 169);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(507, 287);
+            this.tabControl1.Size = new System.Drawing.Size(522, 287);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.contenido);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(499, 261);
+            this.tabPage1.Size = new System.Drawing.Size(499, 256);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Procedimiento";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -88,7 +90,7 @@
             this.contenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenido.Location = new System.Drawing.Point(3, 3);
             this.contenido.Name = "contenido";
-            this.contenido.Size = new System.Drawing.Size(493, 255);
+            this.contenido.Size = new System.Drawing.Size(493, 250);
             this.contenido.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -119,19 +121,19 @@
             // 
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.richTextBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(499, 261);
+            this.tabPage2.Size = new System.Drawing.Size(514, 256);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DDL";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(436, 124);
+            this.button1.Location = new System.Drawing.Point(429, 125);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(52, 23);
+            this.button1.Size = new System.Drawing.Size(82, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Crear";
             this.button1.UseVisualStyleBackColor = true;

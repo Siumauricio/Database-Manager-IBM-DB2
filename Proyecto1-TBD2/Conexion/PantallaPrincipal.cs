@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Navigation;
 using IBM.Data.DB2;
 using IBM.Data.DB2.iSeries;
 using Proyecto1_TBD2.Cheks;
@@ -24,10 +26,11 @@ namespace Proyecto1_TBD2 {
 
         public PantallaPrincipal() {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
+          
         }
 
         private void n_conexion_Click(object sender, EventArgs e) {
@@ -122,10 +125,10 @@ namespace Proyecto1_TBD2 {
         }
 
         private void eliminarIndiceToolStripMenuItem_Click(object sender, EventArgs e) {
+            TreeNode node = arbol_conexiones.SelectedNode;
+            DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
             try {
                 string query = "ALTER TABLE ";
-                TreeNode node = arbol_conexiones.SelectedNode;
-                DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
                 connect.Open();
                 DB2Command cmd = new DB2Command("select tabname from syscat.indexes WHERE TABSCHEMA = 'DB2ADMIN' AND INDNAME ='"+arbol_conexiones.SelectedNode.Text+"' ;", connect);
                 DB2DataReader buffer = cmd.ExecuteReader();
@@ -143,6 +146,8 @@ namespace Proyecto1_TBD2 {
             } catch (DB2Exception ex) {
                 MessageBox.Show("Ha ocurrido un error al eliminar su indice!\n" + ex.Message);
             }
+            connect.Close();
+
         }
 
         private void añadirProcedimientoToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -308,6 +313,30 @@ namespace Proyecto1_TBD2 {
         private void modificarCheckToolStripMenuItem_Click(object sender, EventArgs e) {
             ModificarCheck mc = new ModificarCheck(arbol_conexiones);
             mc.Show();
+        }
+
+        private void PantallaPrincipal_MdiChildActivate(object sender, EventArgs e) {
+            MessageBox.Show("Hola mundo");
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            menus.Add(Tablas);
+            menus.Add(Basededatos);
+            menus.Add(subMenustablas);
+            menus.Add(Indices);
+            menus.Add(subMenuIndices);
+            menus.Add(Procedimientos);
+            menus.Add(subMenuProcedimientos);
+            menus.Add(Funciones);
+            menus.Add(subMenuFunciones);
+            menus.Add(Vistas);
+            menus.Add(subMenuVistas);
+            menus.Add(Triggers);
+            menus.Add(subMenuTriggers);
+            menus.Add(Checks);
+            menus.Add(subMenuChecks);
+            IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
+            ic.Show();
         }
     }
 }

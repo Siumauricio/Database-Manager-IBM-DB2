@@ -73,5 +73,10 @@ namespace Proyecto1_TBD2.Tablas {
             }
             connection.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e) {
+            AnadirCampo ac = new AnadirCampo(arbol, nombre_Tabla);
+            ac.Show();
+        }
     }
 }
