@@ -23,7 +23,7 @@ using Proyecto1_TBD2.Vistas;
 namespace Proyecto1_TBD2 { 
     public partial class PantallaPrincipal:Form {
         List<ContextMenuStrip> menus = new List<ContextMenuStrip>();
-
+        string bd = "";
         public PantallaPrincipal() {
             InitializeComponent();
 
@@ -49,6 +49,7 @@ namespace Proyecto1_TBD2 {
             menus.Add(subMenuTriggers);
             menus.Add(Checks);
             menus.Add(subMenuChecks);
+          
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
         }
@@ -126,23 +127,12 @@ namespace Proyecto1_TBD2 {
 
         private void eliminarIndiceToolStripMenuItem_Click(object sender, EventArgs e) {
             TreeNode node = arbol_conexiones.SelectedNode;
-            DB2Connection connect = obtenerConexion(node.Parent.Parent.Text);
+            DB2Connection connect = obtenerConexion(node.Parent.Parent.Parent.Text);
             try {
-                string query = "ALTER TABLE ";
                 connect.Open();
-                DB2Command cmd = new DB2Command("select tabname from syscat.indexes WHERE TABSCHEMA = 'DB2ADMIN' AND INDNAME ='"+arbol_conexiones.SelectedNode.Text+"' ;", connect);
-                DB2DataReader buffer = cmd.ExecuteReader();
-                while (buffer.Read()) {
-                    var palabra = buffer ["TABNAME"].ToString();
-                    query += palabra + " DROP CONSTRAINT "+node.Text+";";
-                    break;
-                }
-                buffer.Close();
-       
-                cmd.CommandText = query;
+                DB2Command cmd = new DB2Command("DROP INDEX "+ arbol_conexiones.SelectedNode.Text, connect);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Su indice ha sido eliminado correctamente!");
-                arbol_conexiones.SelectedNode.Remove();
             } catch (DB2Exception ex) {
                 MessageBox.Show("Ha ocurrido un error al eliminar su indice!\n" + ex.Message);
             }
@@ -335,8 +325,102 @@ namespace Proyecto1_TBD2 {
             menus.Add(subMenuTriggers);
             menus.Add(Checks);
             menus.Add(subMenuChecks);
+            menus.Add(PK);
+            menus.Add(FK);
             IngresarConexion ic = new IngresarConexion(arbol_conexiones, menus);
             ic.Show();
+        }
+
+        private void crearLlaveForaneaToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearForeignKey cf = new CrearForeignKey(arbol_conexiones);
+            cf.Show();
+        }
+
+        private void crearLlavePrimariaToolStripMenuItem_Click(object sender, EventArgs e) {
+            CrearPrimaryKey cp = new CrearPrimaryKey(arbol_conexiones);
+            cp.Show();
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarPrimaryKey mp = new ModificarPrimaryKey(arbol_conexiones);
+            mp.Show();
+        }
+
+        private void eliminarPKToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command(@"select tab.tabname from syscat.tables tab inner join syscat.tabconst const  on const.tabschema = tab.tabschema  and const.tabname = tab.tabname and const.type = 'P' join syscat.keycoluse key  on const.tabschema = key.tabschema  and const.tabname = key.tabname  and const.constname = '"+arbol_conexiones.SelectedNode.Text+"' where tab.type = 'T'  and tab.tabschema like 'DB2ADMIN' group by tab.tabschema, const.constname, tab.tabname  order by tab.tabschema, const.constname;", connection);
+                DB2DataReader buffer = cmd.ExecuteReader();
+
+                while (buffer.Read()) {
+                    var nombre_tabla = buffer ["TABNAME"].ToString();
+                    buffer.Close();
+                    cmd.CommandText = "ALTER TABLE " + nombre_tabla + " DROP PRIMARY KEY;";
+                    cmd.ExecuteNonQuery();
+                    break;
+                }
+                MessageBox.Show("Llave Primaria borrada correctamente!\n" );
+
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar Check!\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void eliminarFKToolStripMenuItem_Click(object sender, EventArgs e) {
+            DB2Connection connection = obtenerConexion(arbol_conexiones.SelectedNode.Parent.Parent.Parent.Text);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command(@"select  tabname from syscat.references where  constname = '"+arbol_conexiones.SelectedNode.Text+"';", connection);
+                DB2DataReader buffer = cmd.ExecuteReader();
+
+                while (buffer.Read()) {
+                    var nombre_tabla = buffer ["TABNAME"].ToString();
+                    buffer.Close();
+                    cmd.CommandText = "ALTER TABLE " + nombre_tabla + " DROP FOREIGN KEY "+arbol_conexiones.SelectedNode.Text+";";
+                    cmd.ExecuteNonQuery();
+                    break;
+                }
+                MessageBox.Show("Llave Foranea borrada correctamente!\n");
+
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error al borrar Check!\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void modificarFKToolStripMenuItem_Click(object sender, EventArgs e) {
+            ModificarForeignKey mf = new ModificarForeignKey(arbol_conexiones);
+            mf.Show();
+        }
+
+        private void modificarIndiceToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            DataTable ds;
+            DB2DataAdapter adapter;
+            DB2Connection connection = obtenerConexion(bd);
+            try {
+                connection.Open();
+                DB2Command cmd = new DB2Command(richTextBox1.Text, connection);
+
+                adapter = new DB2DataAdapter(cmd);
+                ds = new DataTable();
+                adapter.Fill(ds);
+                dataGridView1.DataSource = ds;
+                connection.Close();
+
+            } catch (DB2Exception ex) {
+                MessageBox.Show("Error !\n" + ex.Message);
+            }
+            connection.Close();
+        }
+
+        private void seleccionarToolStripMenuItem_Click(object sender, EventArgs e) {
+            bd = arbol_conexiones.SelectedNode.Text;
         }
     }
 }

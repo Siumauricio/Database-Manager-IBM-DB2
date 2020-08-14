@@ -35,6 +35,8 @@
             this.refresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.Basededatos = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarConexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +47,8 @@
             this.modificarTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Indices = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.crearIndicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearLlaveForaneaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearLlavePrimariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuIndices = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarIndiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarIndiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,11 +82,18 @@
             this.abrirCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PK = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarPKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FK = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modificarFKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarFKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.seleccionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Tablas.SuspendLayout();
             this.panel_conexiones.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Basededatos.SuspendLayout();
             this.subMenustablas.SuspendLayout();
             this.Indices.SuspendLayout();
@@ -97,7 +108,8 @@
             this.subMenuTriggers.SuspendLayout();
             this.Checks.SuspendLayout();
             this.subMenuChecks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.PK.SuspendLayout();
+            this.FK.SuspendLayout();
             this.SuspendLayout();
             // 
             // arbol_conexiones
@@ -194,6 +206,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.arbol_conexiones);
@@ -201,18 +214,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 695);
+            this.panel1.Size = new System.Drawing.Size(1135, 695);
             this.panel1.TabIndex = 4;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(220, 433);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(915, 259);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(220, 87);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(915, 340);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
             // 
             // Basededatos
             // 
             this.Basededatos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eliminarConexionToolStripMenuItem,
             this.propiedadesToolStripMenuItem,
-            this.refrescarToolStripMenuItem});
+            this.refrescarToolStripMenuItem,
+            this.seleccionarToolStripMenuItem});
             this.Basededatos.Name = "contextMenuStrip2";
-            this.Basededatos.Size = new System.Drawing.Size(172, 70);
+            this.Basededatos.Size = new System.Drawing.Size(172, 92);
             // 
             // eliminarConexionToolStripMenuItem
             // 
@@ -267,16 +298,32 @@
             // Indices
             // 
             this.Indices.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearIndicesToolStripMenuItem});
+            this.crearIndicesToolStripMenuItem,
+            this.crearLlaveForaneaToolStripMenuItem,
+            this.crearLlavePrimariaToolStripMenuItem});
             this.Indices.Name = "Indices";
-            this.Indices.Size = new System.Drawing.Size(143, 26);
+            this.Indices.Size = new System.Drawing.Size(180, 70);
             // 
             // crearIndicesToolStripMenuItem
             // 
             this.crearIndicesToolStripMenuItem.Name = "crearIndicesToolStripMenuItem";
-            this.crearIndicesToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.crearIndicesToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.crearIndicesToolStripMenuItem.Text = "Crear Indices";
             this.crearIndicesToolStripMenuItem.Click += new System.EventHandler(this.crearIndicesToolStripMenuItem_Click);
+            // 
+            // crearLlaveForaneaToolStripMenuItem
+            // 
+            this.crearLlaveForaneaToolStripMenuItem.Name = "crearLlaveForaneaToolStripMenuItem";
+            this.crearLlaveForaneaToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.crearLlaveForaneaToolStripMenuItem.Text = "Crear Llave Foranea";
+            this.crearLlaveForaneaToolStripMenuItem.Click += new System.EventHandler(this.crearLlaveForaneaToolStripMenuItem_Click);
+            // 
+            // crearLlavePrimariaToolStripMenuItem
+            // 
+            this.crearLlavePrimariaToolStripMenuItem.Name = "crearLlavePrimariaToolStripMenuItem";
+            this.crearLlavePrimariaToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.crearLlavePrimariaToolStripMenuItem.Text = "Crear Llave Primaria";
+            this.crearLlavePrimariaToolStripMenuItem.Click += new System.EventHandler(this.crearLlavePrimariaToolStripMenuItem_Click);
             // 
             // subMenuIndices
             // 
@@ -296,8 +343,9 @@
             // modificarIndiceToolStripMenuItem
             // 
             this.modificarIndiceToolStripMenuItem.Name = "modificarIndiceToolStripMenuItem";
-            this.modificarIndiceToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.modificarIndiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarIndiceToolStripMenuItem.Text = "Modificar Indice";
+            this.modificarIndiceToolStripMenuItem.Click += new System.EventHandler(this.modificarIndiceToolStripMenuItem_Click);
             // 
             // Procedimientos
             // 
@@ -519,29 +567,74 @@
             this.eliminarCheckToolStripMenuItem.Text = "Eliminar Check";
             this.eliminarCheckToolStripMenuItem.Click += new System.EventHandler(this.eliminarCheckToolStripMenuItem_Click);
             // 
-            // richTextBox1
+            // PK
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(220, 87);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(907, 340);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.PK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificarToolStripMenuItem,
+            this.eliminarPKToolStripMenuItem});
+            this.PK.Name = "PK";
+            this.PK.Size = new System.Drawing.Size(143, 48);
             // 
-            // dataGridView1
+            // modificarToolStripMenuItem
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(220, 433);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(915, 259);
-            this.dataGridView1.TabIndex = 3;
+            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.modificarToolStripMenuItem.Text = "Modificar PK";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            // 
+            // eliminarPKToolStripMenuItem
+            // 
+            this.eliminarPKToolStripMenuItem.Name = "eliminarPKToolStripMenuItem";
+            this.eliminarPKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarPKToolStripMenuItem.Text = "Eliminar PK";
+            this.eliminarPKToolStripMenuItem.Click += new System.EventHandler(this.eliminarPKToolStripMenuItem_Click);
+            // 
+            // FK
+            // 
+            this.FK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modificarFKToolStripMenuItem,
+            this.eliminarFKToolStripMenuItem});
+            this.FK.Name = "FK";
+            this.FK.Size = new System.Drawing.Size(142, 48);
+            // 
+            // modificarFKToolStripMenuItem
+            // 
+            this.modificarFKToolStripMenuItem.Name = "modificarFKToolStripMenuItem";
+            this.modificarFKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarFKToolStripMenuItem.Text = "Modificar FK";
+            this.modificarFKToolStripMenuItem.Click += new System.EventHandler(this.modificarFKToolStripMenuItem_Click);
+            // 
+            // eliminarFKToolStripMenuItem
+            // 
+            this.eliminarFKToolStripMenuItem.Name = "eliminarFKToolStripMenuItem";
+            this.eliminarFKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarFKToolStripMenuItem.Text = "Eliminar FK";
+            this.eliminarFKToolStripMenuItem.Click += new System.EventHandler(this.eliminarFKToolStripMenuItem_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1000, 64);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(124, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Run";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // seleccionarToolStripMenuItem
+            // 
+            this.seleccionarToolStripMenuItem.Name = "seleccionarToolStripMenuItem";
+            this.seleccionarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seleccionarToolStripMenuItem.Text = "Seleccionar";
+            this.seleccionarToolStripMenuItem.Click += new System.EventHandler(this.seleccionarToolStripMenuItem_Click);
             // 
             // PantallaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1127, 695);
+            this.ClientSize = new System.Drawing.Size(1135, 695);
             this.Controls.Add(this.panel1);
             this.Name = "PantallaPrincipal";
             this.Text = "IBM DB2";
@@ -551,6 +644,7 @@
             this.panel_conexiones.ResumeLayout(false);
             this.panel_conexiones.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Basededatos.ResumeLayout(false);
             this.subMenustablas.ResumeLayout(false);
             this.Indices.ResumeLayout(false);
@@ -565,7 +659,8 @@
             this.subMenuTriggers.ResumeLayout(false);
             this.Checks.ResumeLayout(false);
             this.subMenuChecks.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.PK.ResumeLayout(false);
+            this.FK.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -626,6 +721,16 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem crearLlaveForaneaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crearLlavePrimariaToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip PK;
+        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminarPKToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip FK;
+        private System.Windows.Forms.ToolStripMenuItem modificarFKToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminarFKToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem seleccionarToolStripMenuItem;
     }
 }
 

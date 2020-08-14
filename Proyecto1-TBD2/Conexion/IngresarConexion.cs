@@ -52,9 +52,6 @@ namespace Proyecto1_TBD2.Conexion {
         }
 
         private void button3_Click(object sender, EventArgs e) {
-            CrearBD cd = new CrearBD();
-            cd.Show();
-            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -76,6 +73,8 @@ namespace Proyecto1_TBD2.Conexion {
                 extraerTriggers(connect);
                 extraerChecks(connect);
                 extraerUsuarios(connect);
+                extraerPrimaryKeys(connect);
+                extraerForeginKeys(connect);
                 this.Hide();
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
@@ -102,6 +101,8 @@ namespace Proyecto1_TBD2.Conexion {
                 extraerTriggers(connect);
                 extraerChecks(connect);
                 extraerUsuarios(connect);
+                extraerPrimaryKeys(connect);
+                extraerForeginKeys(connect);
             } catch (DB2Exception error) {
                 MessageBox.Show("A ocurrido un error!\n" + error.Message);
             }
@@ -123,14 +124,50 @@ namespace Proyecto1_TBD2.Conexion {
         }
 
         public void extraerIndicies(DB2Connection connect) {
-            DB2Command cmd = new DB2Command("select * from syscat.indexes where tabschema = '" + usuario.Text.ToUpper() + "';", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2Command cmd = new DB2Command(@"select ind.indname  from syscat.indexes ind join syscat.indexcoluse cols  on ind.indname = cols.indname  and ind.indschema = 'DB2ADMIN' where ind.tabschema not like 'SYS%';" , connect);//OBTENER TABLAS DE LA BASE DE DATOS
             DB2DataReader bff = cmd.ExecuteReader();
+            TreeNode nodo = node2.Nodes.Add("Indices");
+            nodo.ImageIndex = 1;
+            nodo.SelectedImageIndex = 1;
             while (bff.Read()) {
                 var Names = bff ["indname"].ToString();
-                TreeNode nodo = node2.Nodes.Add(Names.ToString());
-                nodo.ImageIndex = 3;
-                nodo.SelectedImageIndex = 3;
-                nodo.ContextMenuStrip = subMenus [4];
+                TreeNode _nodo = nodo.Nodes.Add(Names.ToString());
+                _nodo.ImageIndex = 3;
+                _nodo.SelectedImageIndex = 3;
+                _nodo.ContextMenuStrip = subMenus [4];
+            }
+            bff.Close();
+        }
+
+        public void extraerPrimaryKeys(DB2Connection connect) {
+            DB2Command cmd = new DB2Command(@"select  const.constname from syscat.tables tab inner join syscat.tabconst const  on const.tabschema = tab.tabschema and const.tabname = tab.tabname and const.type = 'P'  join syscat.keycoluse key  on const.tabschema = key.tabschema   and const.tabname = key.tabname  and const.constname = key.constname  where tab.type = 'T'  and tab.tabschema like 'DB2ADMIN' group by tab.tabschema, const.constname, tab.tabname   order by tab.tabschema, const.constname;", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2DataReader bff = cmd.ExecuteReader();
+            TreeNode nodo = node2.Nodes.Add("Llaves Primarias");
+            nodo.ImageIndex = 1;
+            nodo.SelectedImageIndex = 1;
+            while (bff.Read()) {
+                var Names = bff ["CONSTNAME"].ToString();
+                TreeNode _nodo = nodo.Nodes.Add(Names.ToString());
+                _nodo.ImageIndex = 3;
+                _nodo.SelectedImageIndex = 3;
+               _nodo.ContextMenuStrip = subMenus [15];
+            }
+            bff.Close();
+        }
+
+
+        public void extraerForeginKeys(DB2Connection connect) {
+            DB2Command cmd = new DB2Command(@"select  constname  from syscat.references ;", connect);//OBTENER TABLAS DE LA BASE DE DATOS
+            DB2DataReader bff = cmd.ExecuteReader();
+            TreeNode nodo = node2.Nodes.Add("Llaves Foraneas");
+            nodo.ImageIndex = 1;
+            nodo.SelectedImageIndex = 1;
+            while (bff.Read()) {
+                var Names = bff ["CONSTNAME"].ToString();
+                TreeNode _nodo = nodo.Nodes.Add(Names.ToString());
+                _nodo.ImageIndex = 3;
+                _nodo.SelectedImageIndex = 3;
+                 _nodo.ContextMenuStrip = subMenus [16];
             }
             bff.Close();
         }
